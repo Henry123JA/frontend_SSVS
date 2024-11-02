@@ -1,0 +1,24 @@
+.container {
+    margin-top: 20px;
+    background-color: #24b753;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  }
+.nav-link {
+    transition: background-color 0.3s ease;
+  }
+  
+.nav-link:hover {
+    background-color: rgba(142, 188, 27, 0.1);
+  }
+  .custom-nav-link {
+    font-weight: bold; /* Hace el texto más negrita */
+    font-family: 'Arial', sans-serif; /* Cambia la fuente */
+    font-size: 1.1em; /* Aumenta el tamaño de la fuente */
+    transition: color 0.3s ease; /* Suaviza el cambio de color al pasar el ratón */
+}
+
+.custom-nav-link:hover {
+    color: #007bff; /* Cambia el color al pasar el ratón */
+}
