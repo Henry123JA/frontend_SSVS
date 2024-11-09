@@ -1,0 +1,97 @@
+/* src/app/user/user-edit.component.css */
+.user-edit {
+  max-width: 400px;
+  margin: 20px auto;
+  padding: 20px;
+  background-color: #f9f9f9;  /* Fondo suave para destacar el formulario */
+  border-radius: 8px;         /* Bordes redondeados para un look más suave */
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);  /* Sombra para destacar el formulario */
+}
+
+label {
+  display: block;
+  margin: 10px 0 5px;
+  font-weight: 600;           /* Acentúa el texto de las etiquetas */
+}
+
+input {
+  width: 100%;
+  padding: 10px;              /* Aumento de padding para mayor facilidad al escribir */
+  margin-bottom: 15px;
+  border: 1px solid #ccc;     /* Border suave */
+  border-radius: 4px;         /* Bordes redondeados para los inputs */
+  font-size: 16px;             /* Mejor legibilidad */
+}
+
+button {
+  padding: 10px 15px;         /* Más espacio alrededor del texto */
+  background-color: #4CAF50;  /* Verde para el botón principal */
+  color: white;
+  border: none;
+  cursor: pointer;
+  font-size: 16px;             /* Aumentar el tamaño de fuente para mejor legibilidad */
+  border-radius: 4px;         /* Bordes redondeados */
+  transition: background-color 0.3s ease; /* Transición suave al pasar el mouse */
+  width: 100%;                 /* Asegura que el botón ocupe todo el ancho del contenedor */
+}
+
+button:hover {
+  background-color: #45a049;  /* Verde más oscuro cuando se pasa el mouse */
+}
+
+button:focus {
+  outline: none;              /* Elimina el contorno predeterminado al hacer focus */
+}
+
+.btn-outline-warning {
+  padding: 10px 15px;
+  background-color: transparent;
+  color: #ff9800;
+  border: 2px solid #ff9800;
+  font-size: 16px;
+  border-radius: 4px;
+  width: 100%; /* Asegura que también ocupe el ancho completo */
+  margin-top: 10px;  /* Agrega algo de espacio por encima */
+}
+
+.btn-outline-warning:hover {
+  background-color: #ff9800;
+  color: white;
+}
+
+/* Alertas */
+.alert {
+  font-size: 14px;             /* Tamaño de fuente para mensajes */
+  padding: 10px 15px;
+  border-radius: 4px;
+}
+
+.alert-danger {
+  background-color: #f8d7da;
+  color: #721c24;
+  border: 1px solid #f5c6cb;
+}
+
+.alert-warning {
+  background-color: #fff3cd;
+  color: #856404;
+  border: 1px solid #ffeeba;
+}
+
+.alert-success {
+  background-color: #d4edda;
+  color: #155724;
+  border: 1px solid #c3e6cb;
+}
+
+/* Responsividad para dispositivos móviles */
+@media (max-width: 600px) {
+  .user-edit {
+      max-width: 100%;
+      padding: 15px;
+  }
+
+  input, button {
+      font-size: 14px;
+  }
+}

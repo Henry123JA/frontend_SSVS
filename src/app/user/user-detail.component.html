@@ -1,0 +1,19 @@
+<!-- src/app/user/user-detail.component.html -->
+<div *ngIf="user; else loading">
+    <h2>Detalles del Usuario</h2>
+    <div>
+      <p><strong>ID:</strong> {{ user.id }}</p>
+      <p><strong>Nombre de Usuario:</strong> {{ user.username }}</p>
+      <p><strong>Email:</strong> {{ user.email }}</p>
+      <p><strong>Roles:</strong> 
+        <span > {{ user.roles[0] }}</span>
+      </p>
+    </div>
+  
+    <button (click)="goBackToList()" class="btn btn-primary">Volver a la lista</button>
+  </div>
+  
+  <ng-template #loading>
+    <p>Cargando datos del usuario...</p>
+  </ng-template>
+  

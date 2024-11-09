@@ -1,0 +1,44 @@
+  <!-- src/app/user/user-list.component.html -->
+<div class="user-list">
+    <h2>Lista de Usuarios</h2>
+
+    <div class="mb-3">
+      <button class="btn btn-primary" routerLink="/usercreate">Crear Nuevo Usuario</button>
+    </div>
+
+    <table>
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Username</th>
+          <th>Email</th>
+          <th>Roles</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let user of users">
+          <td>{{ user.id }}</td>
+          <td>{{ user.username }}</td>
+          <td>{{ user.email }}</td>
+       
+          <td>
+            {{ user.roles.length > 0 ? user.roles[0].name : 'Sin roles' }}
+          </td>
+          
+          <td>
+            <button class="btn btn-outline-warning" routerLink="/editUser/{{user.id}}">Editar</button>
+            <button class="btn btn-outline-success" routerLink="/userdetail/{{user.id}}">Ver</button>
+            <button class="btn btn-outline-danger" (click)="borrar(user.id)">Eliminar</button>
+          </td>
+           
+        </tr>
+      </tbody>
+    </table>
+</div> 
+<!-- {{users | json}}
+<div class="container">
+  <h2>Lista de Usuarios (Formato JSON)</h2>
+  <pre>{{ users | json }}</pre>  
+</div> -->
+  

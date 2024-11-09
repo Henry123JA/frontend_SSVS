@@ -1,0 +1,108 @@
+<!-- src/app/user/user-create.component.html -->
+<div class="col-md-12">
+    <div class="card card-container">
+      <h2>Crear Nuevo Usuario</h2>
+      <form name="createForm" (ngSubmit)="f.form.valid && createUser()" #f="ngForm" novalidate>
+        <!-- Username Field -->
+        <div class="form-group">
+          <label for="username">Username</label>
+          <input
+            type="text"
+            id="username"
+            class="form-control"
+            name="username"
+            [(ngModel)]="user.username"
+            required
+            minlength="3"
+            maxlength="20"
+            #username="ngModel"
+          />
+          <div class="alert alert-danger" *ngIf="username.errors && f.submitted">
+            <div *ngIf="username.errors['required']">Username is required</div>
+            <div *ngIf="username.errors['minlength']">
+              Username must be at least 3 characters
+            </div>
+            <div *ngIf="username.errors['maxlength']">
+              Username must be at most 20 characters
+            </div>
+          </div>
+        </div>
+  
+        <!-- Email Field -->
+        <div class="form-group">
+          <label for="email">Email</label>
+          <input
+            type="email"
+            id="email"
+            class="form-control"
+            name="email"
+            [(ngModel)]="user.email"
+            required
+            email
+            #email="ngModel"
+          />
+          <div class="alert alert-danger" *ngIf="email.errors && f.submitted">
+            <div *ngIf="email.errors['required']">Email is required</div>
+            <div *ngIf="email.errors['email']">
+              Email must be a valid email address
+            </div>
+          </div>
+        </div>
+  
+        <!-- Password Field -->
+        <div class="form-group">
+          <label for="password">Password</label>
+          <input
+            type="password"
+            id="password"
+            class="form-control"
+            name="password"
+            [(ngModel)]="user.password"
+            minlength="6"
+            placeholder="Ingrese una contraseña de al menos 6 caracteres..."
+            #password="ngModel"
+          />
+          <div class="alert alert-danger" *ngIf="password.errors && f.submitted && password.value">
+            <div *ngIf="password.errors['minlength']">
+              Password must be at least 6 characters
+            </div>
+          </div>
+        </div>
+  
+        <!-- Roles Field -->
+        <div class="form-group">
+            <label for="roles">Roles</label>
+            <select
+            id="roles"
+            class="form-control"
+            name="roles"
+            [(ngModel)]="user.roles[0]"
+            required
+            >
+            <option value="" disabled selected>Por favor selecciona un rol</option>
+            <option *ngFor="let role of availableRoles" [value]="role">{{ role }}</option>
+            </select>
+            <div class="alert alert-danger" *ngIf="f.submitted && (!user.roles || !user.roles[0])">
+            El rol es obligatorio.
+            </div>
+        </div>
+
+        <!-- Submit Button -->
+        <div class="form-group">
+          <button class="btn btn-primary btn-block">Crear Usuario</button>
+          <button class="btn btn-outline-warning btn-block" routerLink="/userlist">Volver</button>
+        </div>
+  
+        <!-- Error Message -->
+        <div class="alert alert-warning" *ngIf="f.submitted && isCreateFailed">
+          Creation failed!<br />{{ errorMessage }}
+        </div>
+      </form>
+  
+      <!-- Success Message -->
+      <div class="alert alert-success" *ngIf="isSuccessful">
+        Usuario creado con éxito!!
+      </div>
+    </div>
+  </div>
+  

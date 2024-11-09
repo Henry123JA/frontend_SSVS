@@ -14,10 +14,7 @@ export class UserService {
   getPublicContent(): Observable<any> {
     return this.http.get(API_URL + 'all', { responseType: 'text' });
   }
-/*
-  getUserBoard(): Observable<any> {
-    return this.http.get(API_URL + 'paciente', { responseType: 'text' });
-  }*/
+
 
   getUserBoard(): Observable<any> {
     const token = this.tokenStorage.getToken(); // Obtener el token desde TokenStorageService
@@ -26,20 +23,14 @@ export class UserService {
 
     return this.http.get(API_URL + 'paciente', { headers, responseType: 'text' });
   }
-/*
-  getModeratorBoard(): Observable<any> {
-    return this.http.get(API_URL + 'medico', { responseType: 'text' });
-  }*/
+
   getModeratorBoard(): Observable<any> {
     const token = this.tokenStorage.getToken();
     const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
 
     return this.http.get(API_URL + 'medico', { headers, responseType: 'text' });
   }
-  /*
-  getAdminBoard(): Observable<any> {
-    return this.http.get(API_URL + 'admin', { responseType: 'text' });
-  }*/
+ 
   getAdminBoard(): Observable<any> {
     const token = this.tokenStorage.getToken();
     const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
