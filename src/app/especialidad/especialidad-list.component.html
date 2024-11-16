@@ -1,0 +1,31 @@
+<!-- src/app/especialidad/especialidad-list.component.html -->
+<div class="especialidad-list">
+    <h2>Lista de Especialidades</h2>
+  
+    <div class="mb-3">
+      <button class="btn btn-primary" routerLink="/especialidad/create">Crear Nueva Especialidad</button>
+    </div>
+  
+    <table>
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Nombre</th>
+          <th>Descripción</th>
+          <th>Acciones</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let especialidad of especialidades">
+          <td>{{ especialidad.id }}</td>
+          <td>{{ especialidad.nombre }}</td>
+          <td>{{ especialidad.descripcion }}</td>
+          <td>
+            <!--<button class="btn btn-outline-warning" routerLink="/editEspecialidad/{{especialidad.id}}">Editar</button>-->
+            <button class="btn btn-outline-danger" (click)="borrar(especialidad.id)">Eliminar</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  

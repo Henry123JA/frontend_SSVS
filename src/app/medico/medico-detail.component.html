@@ -1,0 +1,22 @@
+<!-- src/app/medico/medico-detail.component.html -->
+<div *ngIf="medico; else loading">
+    <h2>Detalles del Médico</h2>
+    <div>
+      <p><strong>ID: </strong> {{ medico.id }}</p>
+      <p><strong>Cédula de Identidad (CI): </strong> {{ medico.ci  || 'N/A' }}</p>
+      <p><strong>Sexo: </strong> {{ medico.sexo  || 'N/A' }}</p>
+      <p><strong>Teléfono: </strong> {{ medico.telefono  || 'N/A' }}</p>
+      <p><strong>Username: </strong> {{ medico.user.username }}</p>
+      <p><strong>Email: </strong> {{ medico.user.email  }}</p>
+      <p><strong>Roles: </strong> 
+        <span>ROLE_MEDICO</span> 
+      </p>
+    </div>
+   
+    <button (click)="goBackToList()" class="btn btn-primary">Volver a la lista</button>
+  </div>
+  
+  <ng-template #loading>
+    <p>Cargando datos del médico...</p>
+  </ng-template>
+  

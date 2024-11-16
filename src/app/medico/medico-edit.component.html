@@ -1,0 +1,149 @@
+<div class="col-md-12">
+    <div class="card card-container">
+      <h2>Editar Médico</h2>
+      <form
+        *ngIf="!isSuccessful"
+        name="editForm"
+        (ngSubmit)="f.form.valid && updateMedico()"
+        #f="ngForm"
+        novalidate
+      >
+        <!-- Cédula de Identidad (CI) -->
+        <div class="form-group">
+          <label for="ci">Cédula de Identidad (CI)</label>
+          <input
+            type="text"
+            id="ci"
+            class="form-control"
+            name="ci"
+            [(ngModel)]="medico.ci"
+            required
+            minlength="6"
+            maxlength="15"
+            #ci="ngModel"
+          />
+          <div class="alert alert-danger" *ngIf="ci.errors && f.submitted">
+            <div *ngIf="ci.errors['required']">Cédula es requerida</div>
+            <div *ngIf="ci.errors['minlength']">Cédula debe tener al menos 6 caracteres</div>
+            <div *ngIf="ci.errors['maxlength']">Cédula debe tener como máximo 15 caracteres</div>
+          </div>
+        </div>
+        
+        <div class="form-group">
+            <label for="sexo">Sexo</label>
+            <select
+              id="sexo"
+              class="form-control"
+              name="sexo"
+              [(ngModel)]="medico.sexo"
+              required
+              #sexo="ngModel"
+            >
+              <option value="" disabled [selected]="!medico.sexo">Seleccionar</option>
+              <option value="M" [selected]="medico.sexo === 'M'">Masculino</option>
+              <option value="F" [selected]="medico.sexo === 'F'">Femenino</option>
+              <option value="O" [selected]="medico.sexo === 'O'">No binario</option>
+            </select>
+            <div class="alert alert-danger" *ngIf="sexo.errors && f.submitted">
+              <div *ngIf="sexo.errors['required']">El sexo es obligatorio.</div>
+            </div>
+          </div>
+  
+        <!-- Teléfono -->
+        <div class="form-group">
+          <label for="telefono">Teléfono</label>
+          <input
+            type="text"
+            id="telefono"
+            class="form-control"
+            name="telefono"
+            [(ngModel)]="medico.telefono"
+            required
+            maxlength="15"
+            #telefono="ngModel"
+          />
+          <div class="alert alert-danger" *ngIf="telefono.errors && f.submitted">
+            <div *ngIf="telefono.errors['required']">Teléfono es requerido</div>
+          </div>
+        </div>
+  
+        <!-- Username -->
+        <div class="form-group">
+          <label for="username">Username</label>
+          <input
+            type="text"
+            id="username"
+            class="form-control"
+            name="username"
+            [(ngModel)]="medico.user.username"
+            required
+            minlength="3"
+            maxlength="20"
+            #username="ngModel"
+          />
+          <div class="alert alert-danger" *ngIf="username.errors && f.submitted">
+            <div *ngIf="username.errors['required']">Username es requerido</div>
+            <div *ngIf="username.errors['minlength']">
+              Username debe tener al menos 3 caracteres
+            </div>
+            <div *ngIf="username.errors['maxlength']">
+              Username debe tener como máximo 20 caracteres
+            </div>
+          </div>
+        </div>
+  
+        <!-- Email -->
+        <div class="form-group">
+          <label for="email">Email</label>
+          <input
+            type="email"
+            id="email"
+            class="form-control"
+            name="email"
+            [(ngModel)]="medico.user.email"
+            required
+            email
+            #email="ngModel"
+          />
+          <div class="alert alert-danger" *ngIf="email.errors && f.submitted">
+            <div *ngIf="email.errors['required']">Email es requerido</div>
+            <div *ngIf="email.errors['email']">
+              Email debe ser una dirección de correo válida
+            </div>
+          </div>
+        </div>
+  
+            <!-- Password (opcional) -->
+          <div class="form-group">
+              <label for="password">Password</label>
+              <input
+                  type="password"
+                  id="password"
+                  class="form-control"
+                  name="password"
+                  [(ngModel)]="medico.user.password"
+                  placeholder="Deje vacío si no desea modificar la contraseña"
+                  #password="ngModel"
+              />
+          </div>
+  
+  
+        <!-- Submit Button -->
+        <div class="form-group">
+          <button class="btn btn-primary btn-block">Actualizar</button>
+          <button class="btn btn-outline-warning btn-block" routerLink="/medico-list">Volver</button>
+        </div>
+  
+        <!-- Error Message -->
+        <div class="alert alert-warning" *ngIf="f.submitted && isUpdateFailed">
+          Actualización fallida!<br />{{ errorMessage }}
+        </div>
+      </form>
+  
+      <!-- Success Message -->
+      <div class="alert alert-success" *ngIf="isSuccessful">
+        Médico actualizado con éxito!!
+      </div>
+    </div>
+  </div>
+  

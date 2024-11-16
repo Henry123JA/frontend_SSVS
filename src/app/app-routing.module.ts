@@ -12,6 +12,15 @@ import { UserCreateComponent } from './user/user-create.component';
 import { UserListComponent } from './user/user-list.component';
 import { UserEditComponent } from './user/user-edit.component';
 import { UserDetailComponent } from './user/user-detail.component'; 
+import { MedicoListComponent } from './medico/medico-list.component';
+import { MedicoCreateComponent } from './medico/medico-create.component'; 
+import { MedicoDetailComponent } from './medico/medico-detail.component'; 
+import { MedicoEditComponent } from './medico/medico-edit.component';
+
+import { EspecialidadListComponent } from './especialidad/especialidad-list.component';
+import { EspecialidadCreateComponent } from './especialidad/especialidad-create.component';
+
+import { MedicoEspecialidadListComponent } from './medico/medico-especialidad-list.component';
 
 const routes: Routes = [
   { path: 'home', component: HomeComponent },
@@ -19,7 +28,18 @@ const routes: Routes = [
   { path: 'register', component: RegisterComponent },
   { path: 'profile', component: ProfileComponent },
   { path: 'paciente', component: BoardUserComponent },
-  { path: 'medico', component: BoardModeratorComponent },
+  { path: 'medico2', component: BoardModeratorComponent },
+
+  { path: 'medico-list', component: MedicoListComponent },
+  { path: 'medico-create', component: MedicoCreateComponent }, 
+  { path: 'medico-detail/:id', component: MedicoDetailComponent }, 
+  { path: 'medico-edit/:id', component: MedicoEditComponent },
+
+  { path: 'especialidadlist', component: EspecialidadListComponent },
+  { path: 'especialidad/create', component: EspecialidadCreateComponent },
+
+  { path: 'medico-especialidad-list', component: MedicoEspecialidadListComponent },
+
   { path: 'admin', component: BoardAdminComponent },
   //{ path: 'user/list', component: UserListComponent },
   //{ path: 'user/edit/:id', component: UserEditComponent },

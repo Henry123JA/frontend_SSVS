@@ -1,0 +1,41 @@
+<!-- src/app/medico/medico-list.component.html -->
+<div class="medico-list">
+    <h2>Lista de Médicos</h2>
+  
+    <div class="mb-3">
+      <button class="btn btn-primary" routerLink="/medico-create">Crear Nuevo Médico</button>
+    </div>
+  
+    <table>
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Username</th>
+          <th>Email</th>
+          <th>Cédula</th>
+          <th>Sexo</th>
+          <th>Teléfono</th>
+          <th>Roles</th>
+          <th>Acciones</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let medico of medicos">
+          <td>{{ medico.id }}</td>
+          <td>{{ medico.user.username }}</td>  
+          <td>{{ medico.user.email }}</td>    
+          <td>{{ medico.ci || 'N/A' }}</td>    
+          <td>{{ medico.sexo || 'N/A' }}</td>   
+          <td>{{ medico.telefono || 'N/A' }}</td> 
+          <td>ROLE_MEDICO</td>
+
+          <td>
+            <!--<button class="btn btn-outline-warning" routerLink="/medico-edit/{{medico.id}}">Editar</button>-->
+            <button class="btn btn-outline-success" routerLink="/medico-detail/{{medico.id}}">Ver</button>
+            <button class="btn btn-outline-danger" (click)="borrar(medico.id)">Eliminar</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  

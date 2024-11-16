@@ -1,0 +1,50 @@
+<!-- src/app/medico/medico-especialidad-list.component.html -->
+<div class="medico-especialidad-list">
+    <h2>Asignación de Especialidades a Médicos</h2>
+  
+    <div class="mb-3">
+      <button class="btn btn-primary" routerLink="/medico-create">Crear Nuevo Médico</button>
+    </div>
+  
+    <table class="table">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Médico</th>
+          <th>Especialidades</th>
+          <th>Acciones</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let medico of medicos">
+          <td>{{ medico.id }}</td>
+          <td>{{ medico.user.username }}</td>
+          <td>
+            <ul>
+              <li *ngFor="let especialidad of especialidades">
+                {{ especialidad.nombre }}
+                <button class="btn btn-outline-danger btn-sm"
+                  (click)="eliminarEspecialidad(medico.id, especialidad.id)">
+                  Eliminar
+                </button>
+              </li>
+            </ul>
+          </td>
+          <td>
+            <select #especialidadSelect>
+              <option *ngFor="let especialidad of especialidades" [value]="especialidad.id">
+                {{ especialidad.nombre }}
+              </option>
+            </select>
+            <button
+              class="btn btn-outline-success btn-sm"
+              (click)="asignarEspecialidad(medico.id, +especialidadSelect.value)"
+            >
+              Asignar Especialidad
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  

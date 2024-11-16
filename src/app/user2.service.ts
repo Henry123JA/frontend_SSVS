@@ -2,7 +2,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { User } from './model/user.model'; // Suponiendo que tengas un modelo User
+import { User,Medico } from './model/user.model'; // Suponiendo que tengas un modelo User
 import { TokenStorageService } from './_services/token-storage.service';
 import { catchError } from 'rxjs/operators';  // Asegúrate de importar catchError
 import { throwError } from 'rxjs';
@@ -73,5 +73,6 @@ export class UserService {
       })
     );
   }
+
 
 }

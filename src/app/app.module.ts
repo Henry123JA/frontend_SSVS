@@ -15,9 +15,16 @@ import { BoardUserComponent } from './board-user/board-user.component';
 import { UserListComponent } from './user/user-list.component'; // Ajusta la ruta según tu estructura
 import { UserEditComponent } from './user/user-edit.component';
 import { UserService } from './user2.service';
+import { EspecialidadService } from './especialidad.service';
 import { UserCreateComponent } from './user/user-create.component';
 import { UserDetailComponent } from './user/user-detail.component'; 
-
+import { MedicoListComponent } from './medico/medico-list.component';
+import { MedicoCreateComponent } from './medico/medico-create.component'; 
+import { MedicoDetailComponent } from './medico/medico-detail.component';
+import { MedicoEditComponent } from './medico/medico-edit.component';
+import { EspecialidadListComponent } from './especialidad/especialidad-list.component';
+import { EspecialidadCreateComponent } from './especialidad/especialidad-create.component';
+import { MedicoEspecialidadListComponent } from './medico/medico-especialidad-list.component';
 import { authInterceptorProviders } from './_helpers/auth.interceptor';
 
 @NgModule({
@@ -33,13 +40,20 @@ import { authInterceptorProviders } from './_helpers/auth.interceptor';
     UserListComponent,
     UserEditComponent,
     UserCreateComponent,
-    UserDetailComponent
+    UserDetailComponent,
+    MedicoListComponent,
+    MedicoCreateComponent,
+    MedicoDetailComponent,
+    MedicoEditComponent,
+    EspecialidadListComponent,
+    EspecialidadCreateComponent,
+    MedicoEspecialidadListComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
   ],
   providers: [authInterceptorProviders],
   bootstrap: [AppComponent]

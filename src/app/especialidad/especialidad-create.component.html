@@ -1,0 +1,69 @@
+<!-- src/app/especialidad/especialidad-create.component.html -->
+<div class="col-md-12">
+    <div class="card card-container">
+      <h2>Crear Nueva Especialidad</h2>
+      <form name="createForm" (ngSubmit)="f.form.valid && createEspecialidad()" #f="ngForm" novalidate>
+        
+        <!-- Nombre Field -->
+        <div class="form-group">
+          <label for="nombre">Nombre</label>
+          <input
+            type="text"
+            id="nombre"
+            class="form-control"
+            name="nombre"
+            [(ngModel)]="especialidad.nombre"
+            required
+            minlength="3"
+            maxlength="50"
+            #nombre="ngModel"
+          />
+          <div class="alert alert-danger" *ngIf="nombre.errors && f.submitted">
+            <div *ngIf="nombre.errors['required']">Nombre es requerido</div>
+            <div *ngIf="nombre.errors['minlength']">
+              Nombre debe tener al menos 3 caracteres
+            </div>
+            <div *ngIf="nombre.errors['maxlength']">
+              Nombre debe tener como máximo 50 caracteres
+            </div>
+          </div>
+        </div>
+
+        <!-- Descripción Field -->
+        <div class="form-group">
+          <label for="descripcion">Descripción</label>
+          <textarea
+            id="descripcion"
+            class="form-control"
+            name="descripcion"
+            [(ngModel)]="especialidad.descripcion"
+            required
+            minlength="5"
+            #descripcion="ngModel"
+          ></textarea>
+          <div class="alert alert-danger" *ngIf="descripcion.errors && f.submitted">
+            <div *ngIf="descripcion.errors['required']">Descripción es requerida</div>
+            <div *ngIf="descripcion.errors['minlength']">
+              Descripción debe tener al menos 5 caracteres
+            </div>
+          </div>
+        </div>
+
+        <!-- Submit Button -->
+        <div class="form-group">
+          <button class="btn btn-primary btn-block">Crear Especialidad</button>
+          <button class="btn btn-outline-warning btn-block" routerLink="/especialidadlist">Volver</button>
+        </div>
+
+        <!-- Error Message -->
+        <div class="alert alert-warning" *ngIf="f.submitted && isCreateFailed">
+          ¡Creación fallida!<br />{{ errorMessage }}
+        </div>
+      </form>
+
+      <!-- Success Message -->
+      <div class="alert alert-success" *ngIf="isSuccessful">
+        ¡Especialidad creada con éxito!
+      </div>
+    </div>
+</div>

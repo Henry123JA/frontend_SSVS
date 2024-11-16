@@ -1,0 +1,12 @@
+/* Utiliza el mismo estilo que en el archivo de usuario */
+.user-edit, .medico-edit {
+    max-width: 400px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Otros estilos pueden ser idénticos */
+  

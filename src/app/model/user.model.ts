@@ -11,4 +11,12 @@ export interface Role {
     password: string;
     roles: Role[];
   }
+  export interface Medico {
+    id: number;
+    ci: string;        
+    sexo: string;      
+    telefono: string;  
+    user: User;        
+  }
+  
   
