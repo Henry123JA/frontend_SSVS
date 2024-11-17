@@ -17,14 +17,14 @@
       </thead>
       <tbody>
         <tr *ngFor="let medico of medicos">
-          <td>{{ medico.id }}</td>
+          <td>{{ medico.medico.id }}</td>
           <td>{{ medico.user.username }}</td>
           <td>
             <ul>
-              <li *ngFor="let especialidad of especialidades">
-                {{ especialidad.nombre }}
+              <li *ngFor="let especi of medico.especialidades">
+                {{ especi.nombre }}
                 <button class="btn btn-outline-danger btn-sm"
-                  (click)="eliminarEspecialidad(medico.id, especialidad.id)">
+                  (click)="eliminarEspecialidad(medico.medico.id, especi.id)">
                   Eliminar
                 </button>
               </li>
@@ -38,7 +38,7 @@
             </select>
             <button
               class="btn btn-outline-success btn-sm"
-              (click)="asignarEspecialidad(medico.id, +especialidadSelect.value)"
+              (click)="asignarEspecialidad(medico.medico.id, +especialidadSelect.value)"
             >
               Asignar Especialidad
             </button>

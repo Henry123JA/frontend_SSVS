@@ -11,8 +11,9 @@ import { Especialidad } from '../model/especialidad.model';  // Modelo de especi
   styleUrls: ['./medico-especialidad-list.component.css']
 })
 export class MedicoEspecialidadListComponent implements OnInit {
-  medicos: Medico[] = [];
+  medicos: any[] = [];
   especialidades: Especialidad[] = [];
+  
 
   constructor(
     private medicoService: MedicoService,
