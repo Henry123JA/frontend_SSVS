@@ -1,0 +1,26 @@
+
+<div class="bitacora-detail">
+    <h2>Bitácora del Usuario  {{ usuario?.username || 'Cargando...' }}</h2>
+  
+    <table>
+      <thead>
+        <tr>
+          <th>Acción</th>
+          <th>Descripción</th>
+          <th>IP</th>
+          <th>Fecha y Hora</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let bitacora of bitacoras">
+          <td>{{ bitacora.tipoAccion }}</td>
+          <td>{{ bitacora.descripcionAccion }}</td>
+          <td>{{ bitacora.ip }}</td>
+          <td>{{ bitacora.fechaHora }}</td>
+        </tr>
+      </tbody>
+    </table>
+    <button class="btn btn-outline-warning btn-block" routerLink="/userlist">Volver</button>
+    <button class="btn btn-outline-success" (click)="imprimirBitacora()">Imprimir</button>
+  </div>
+  

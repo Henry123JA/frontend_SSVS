@@ -4,6 +4,8 @@ import { Router } from '@angular/router';
 import { EspecialidadService } from '../especialidad.service'; // Asegúrate de que el servicio esté importado
 import { Especialidad } from '../model/especialidad.model'; // El modelo de especialidad
 
+import { BitacoraService } from '../bitacora.service';
+
 @Component({
   selector: 'app-especialidad-create',
   templateUrl: './especialidad-create.component.html',
@@ -17,7 +19,8 @@ export class EspecialidadCreateComponent implements OnInit {
   isDescriptionRequired: boolean = false;
 
   constructor(
-    private especialidadService: EspecialidadService, 
+    private especialidadService: EspecialidadService,
+    private bitacoraService: BitacoraService, 
     private router: Router
   ) {
     this.especialidad = { id: 0, nombre: '', descripcion: '' }; 
@@ -36,6 +39,9 @@ export class EspecialidadCreateComponent implements OnInit {
       next: () => {
         this.isSuccessful = true;
         this.isCreateFailed = false;
+        if(this.especialidad){
+          this.registrarAccion(this.especialidad.nombre);
+        }
         this.router.navigate(['/especialidadlist']);  // Redirige a la lista de especialidades
       },
       error: (err) => {
@@ -43,5 +49,17 @@ export class EspecialidadCreateComponent implements OnInit {
         this.errorMessage = err.error.message;  // Ajusta este campo dependiendo del backend
       }
     });
+  }
+
+  registrarAccion(name: string): void {
+    // Usamos el nombre del usuario para registrar la acción
+    this.bitacoraService.registrarAccion('CREAR', `Especialidad creada: ${name}`).subscribe(
+      (bitacora) => {
+        console.log('Acción registrada: ', bitacora);
+      },
+      (err) => {
+        console.error('Error al registrar acción: ', err);
+      }
+    );
   }
 }

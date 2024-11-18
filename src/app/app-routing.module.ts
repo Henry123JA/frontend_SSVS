@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 
 import { RegisterComponent } from './register/register.component';
 import { LoginComponent } from './login/login.component';
+import { LogoutComponent } from './logout/logout.component';
 import { HomeComponent } from './home/home.component';
 import { ProfileComponent } from './profile/profile.component';
 import { BoardUserComponent } from './board-user/board-user.component';
@@ -16,7 +17,7 @@ import { MedicoListComponent } from './medico/medico-list.component';
 import { MedicoCreateComponent } from './medico/medico-create.component'; 
 import { MedicoDetailComponent } from './medico/medico-detail.component'; 
 import { MedicoEditComponent } from './medico/medico-edit.component';
-
+import { BitacoraDetailComponent } from './bitacora-detail/bitacora-detail.component';
 import { EspecialidadListComponent } from './especialidad/especialidad-list.component';
 import { EspecialidadCreateComponent } from './especialidad/especialidad-create.component';
 
@@ -24,11 +25,13 @@ import { MedicoEspecialidadListComponent } from './medico/medico-especialidad-li
 
 const routes: Routes = [
   { path: 'home', component: HomeComponent },
+  { path: 'logout', component: LogoutComponent },
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
   { path: 'profile', component: ProfileComponent },
   { path: 'paciente', component: BoardUserComponent },
   { path: 'medico2', component: BoardModeratorComponent },
+  { path: 'bitacora/:id', component: BitacoraDetailComponent }, 
 
   { path: 'medico-list', component: MedicoListComponent },
   { path: 'medico-create', component: MedicoCreateComponent }, 

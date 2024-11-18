@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { UserService } from '../user2.service';
 import { User } from '../model/user.model';
+import { BitacoraService } from '../bitacora.service';
 
 @Component({
   selector: 'app-user-create',
@@ -19,7 +20,8 @@ export class UserCreateComponent implements OnInit {
 
   constructor(
     private userService: UserService, 
-    private router: Router
+    private router: Router,
+    private bitacoraService: BitacoraService 
   ) {
     this.user = { id: 0, username: '', email: '', password: '', roles: [] }; 
   }
@@ -37,6 +39,10 @@ export class UserCreateComponent implements OnInit {
       next: () => {
         this.isSuccessful = true;
         this.isCreateFailed = false;
+        //this.bitacoraService.registrarAccion('CREAR', `Usuario creado: ${this.user.username}`);
+        if (this.user.username) {
+          this.registrarAccion(this.user.username); 
+        }
         this.router.navigate(['/userlist']);  // Redirige a la lista de usuarios
       },
       error: (err) => {
@@ -44,5 +50,16 @@ export class UserCreateComponent implements OnInit {
         this.errorMessage = err.error.message;  // Ajusta este campo dependiendo del backend
       }
     });
+  }
+  registrarAccion(name: string): void {
+    // Usamos el nombre del usuario para registrar la acción
+    this.bitacoraService.registrarAccion('CREAR', `Usuario Creado: ${name}`).subscribe(
+      (bitacora) => {
+        console.log('Acción registrada: ', bitacora);
+      },
+      (err) => {
+        console.error('Error al registrar acción: ', err);
+      }
+    );
   }
 }

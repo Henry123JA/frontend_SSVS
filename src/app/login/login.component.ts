@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../_services/auth.service';
 import { TokenStorageService } from '../_services/token-storage.service';
+import { BitacoraService } from '../bitacora.service';
+import { HttpErrorResponse } from '@angular/common/http'; 
+import { Observable } from 'rxjs'; 
 
 @Component({
   selector: 'app-login',
@@ -17,8 +20,8 @@ export class LoginComponent implements OnInit {
   errorMessage = '';
   roles: string[] = [];
 
-  constructor(private authService: AuthService, private tokenStorage: TokenStorageService) { }
-
+  constructor(private authService: AuthService, private tokenStorage: TokenStorageService,
+    private bitacoraService: BitacoraService ) { }
   ngOnInit(): void {
     if (this.tokenStorage.getToken()) {
       this.isLoggedIn = true;
@@ -28,7 +31,7 @@ export class LoginComponent implements OnInit {
 
   onSubmit(): void {
     const { username, password } = this.form;
-
+    
     this.authService.login(username, password).subscribe({
       next: data => {
         //console.log('Login exitoso:', data);
@@ -38,17 +41,43 @@ export class LoginComponent implements OnInit {
         this.isLoginFailed = false;
         this.isLoggedIn = true;
         this.roles = this.tokenStorage.getUser().roles;
-        this.reloadPage();
+
+        this.registrarAccion().subscribe(
+          () => {
+            // Una vez registrada la acción correctamente, recargamos la página
+            this.reloadPage();
+          },
+          (err: HttpErrorResponse) => {
+            console.error('Error al registrar acción: ', err);
+          }
+        );
+
+        
       },
-      error: err => {
+      error: (err: HttpErrorResponse) => {
         console.error('Error en el inicio de sesión:', err);
         this.errorMessage = err.error.message;
         this.isLoginFailed = true;
       }
     });
+
   }
 
   reloadPage(): void {
     window.location.reload();
   }
+
+  registrarAccion(): Observable<any> {
+    // Obtener el usuario logueado
+    const usuario = this.tokenStorage.getUser();
+    const tipoAccion = 'INICIO SESION';
+    const descripcionAccion = `Usuario ${usuario.username} ha iniciado sesión`;
+  
+    // Llamar al servicio para registrar la acción
+    return this.bitacoraService.registrarAccion(tipoAccion, descripcionAccion);
+  }
+  
+
+
 }
+

@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { TokenStorageService } from './_services/token-storage.service';
-
+import { BitacoraService } from './bitacora.service';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -15,7 +16,9 @@ export class AppComponent {
   showUserBoard = false;
   username?: string;
 
-  constructor(private tokenStorageService: TokenStorageService) { }
+  constructor(private tokenStorageService: TokenStorageService,
+              private bitacoraService: BitacoraService,
+              private router: Router) { }
 
   ngOnInit(): void {
     this.isLoggedIn = !!this.tokenStorageService.getToken();
@@ -31,9 +34,27 @@ export class AppComponent {
       this.username = user.username;
     }
   }
-
+  
   logout(): void {
-    this.tokenStorageService.signOut();
-    window.location.reload();
+    const usuario = this.tokenStorageService.getUser();
+    const tipoAccion = 'CIERRE SESION';
+    const descripcionAccion = `Usuario ${usuario.username} ha cerrado sesión`;
+
+    // Llamar al servicio de bitácora para registrar la acción
+    this.bitacoraService.registrarAccion(tipoAccion, descripcionAccion).subscribe(
+      (bitacora) => {
+        console.log('Acción de cierre de sesión registrada: ', bitacora);
+        
+      },
+      (err) => {
+        console.error('Error al registrar la acción de cierre de sesión: ', err);
+        // Si falla el registro, puedes mostrar un mensaje o proceder igual con el logout
+        
+      }
+    );
+    
+    this.router.navigate(['/logout']);  
   }
+
+ 
 }

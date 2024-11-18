@@ -26,6 +26,8 @@ import { EspecialidadListComponent } from './especialidad/especialidad-list.comp
 import { EspecialidadCreateComponent } from './especialidad/especialidad-create.component';
 import { MedicoEspecialidadListComponent } from './medico/medico-especialidad-list.component';
 import { authInterceptorProviders } from './_helpers/auth.interceptor';
+import { BitacoraDetailComponent } from './bitacora-detail/bitacora-detail.component';
+import { LogoutComponent } from './logout/logout.component';
 
 @NgModule({
   declarations: [
@@ -48,6 +50,8 @@ import { authInterceptorProviders } from './_helpers/auth.interceptor';
     EspecialidadListComponent,
     EspecialidadCreateComponent,
     MedicoEspecialidadListComponent,
+    BitacoraDetailComponent,
+    LogoutComponent,
   ],
   imports: [
     BrowserModule,

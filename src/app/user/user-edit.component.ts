@@ -3,8 +3,8 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute,Router } from '@angular/router';
 import { UserService } from '../user2.service';
 import { User } from '../model/user.model';
-
-
+import { BitacoraService } from '../bitacora.service';
+import { TokenStorageService } from '../_services/token-storage.service';
 // src/app/user/user-edit.component.ts
 
 @Component({
@@ -23,7 +23,9 @@ export class UserEditComponent implements OnInit {
   constructor(
     private userService: UserService, 
     private route: ActivatedRoute,
-    private router: Router
+    private router: Router,
+    private bitacoraService: BitacoraService ,
+    private tokenStorageService: TokenStorageService 
   ) {
     this.user = { id: 0, username: '', email: '', password: '', roles: [] };  // Inicia con roles vacíos
   }
@@ -63,6 +65,9 @@ export class UserEditComponent implements OnInit {
         this.isSuccessful = true;
         this.isUpdateFailed = false;
         console.log("Registrado con exito...", this.user);
+        //const currentUser = this.tokenStorageService.getUser();
+        //const currentUsername = currentUser.username; 
+        this.registrarAccion(this.user.username);
         this.router.navigate(['/userlist']);
       },
       error: (err) => {
@@ -70,6 +75,18 @@ export class UserEditComponent implements OnInit {
         this.errorMessage = err.error.message;  // Ajusta este campo dependiendo del backend
       }
     });
+  }
+
+  registrarAccion(name: string): void {
+    // Usamos el nombre del usuario para registrar la acción
+    this.bitacoraService.registrarAccion('EDITAR', `Usuario Editado: ${name}`).subscribe(
+      (bitacora) => {
+        console.log('Acción registrada: ', bitacora);
+      },
+      (err) => {
+        console.error('Error al registrar acción: ', err);
+      }
+    );
   }
   
 }
