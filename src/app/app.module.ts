@@ -27,6 +27,10 @@ import { EspecialidadCreateComponent } from './especialidad/especialidad-create.
 import { MedicoEspecialidadListComponent } from './medico/medico-especialidad-list.component';
 import { authInterceptorProviders } from './_helpers/auth.interceptor';
 
+import { PacienteListComponent } from './paciente/paciente-list.component';
+import { PacienteCreateComponent } from './paciente/paciente-create.component';
+import { PacienteDetailComponent } from './paciente/paciente-detail.component';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -48,6 +52,9 @@ import { authInterceptorProviders } from './_helpers/auth.interceptor';
     EspecialidadListComponent,
     EspecialidadCreateComponent,
     MedicoEspecialidadListComponent,
+    PacienteListComponent,
+    PacienteCreateComponent,
+    PacienteDetailComponent,
   ],
   imports: [
     BrowserModule,

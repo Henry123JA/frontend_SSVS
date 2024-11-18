@@ -22,6 +22,11 @@ import { EspecialidadCreateComponent } from './especialidad/especialidad-create.
 
 import { MedicoEspecialidadListComponent } from './medico/medico-especialidad-list.component';
 
+// Nuevos componentes para Paciente
+import { PacienteListComponent } from './paciente/paciente-list.component';
+import { PacienteCreateComponent } from './paciente/paciente-create.component';
+import { PacienteDetailComponent } from './paciente/paciente-detail.component';
+
 const routes: Routes = [
   { path: 'home', component: HomeComponent },
   { path: 'login', component: LoginComponent },
@@ -48,6 +53,12 @@ const routes: Routes = [
   { path: 'userlist', component: UserListComponent }, // Ruta para listar usuarios
   { path: 'editUser/:id', component: UserEditComponent }, // Ruta para editar usuario
   //{ path: '', redirectTo: '/users', pathMatch: 'full' },
+
+  // Rutas para Paciente
+  { path: 'paciente-list', component: PacienteListComponent }, // Lista de pacientes
+  { path: 'paciente-create', component: PacienteCreateComponent }, // Crear paciente
+  { path: 'paciente-detail/:id', component: PacienteDetailComponent }, // Detalle de paciente
+
   { path: '', redirectTo: 'home', pathMatch: 'full' }
 ];
 

@@ -1,0 +1,36 @@
+<!-- src/app/paciente/paciente-list.component.html -->
+<div class="paciente-list">
+    <h2>Lista de Pacientes</h2>
+
+    <div class="mb-3">
+        <button class="btn btn-primary" routerLink="/paciente-create">Crear Nuevo Paciente</button>
+    </div>
+
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Username</th>
+                <th>Email</th>
+                <th>Cédula</th>
+                <th>Sexo</th>
+                <th>Teléfono</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let paciente of pacientes">
+                <td>{{ paciente.id }}</td>
+                <td>{{ paciente.user.username }}</td>
+                <td>{{ paciente.user.email }}</td>
+                <td>{{ paciente.ci || 'N/A' }}</td>
+                <td>{{ paciente.sexo || 'N/A' }}</td>
+                <td>{{ paciente.telefono || 'N/A' }}</td>
+                <td>
+                    <button class="btn btn-outline-success" routerLink="/paciente-detail/{{ paciente.id }}">Ver</button>
+                    <button class="btn btn-outline-danger" (click)="borrar(paciente.id)">Eliminar</button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>

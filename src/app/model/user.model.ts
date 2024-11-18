@@ -18,5 +18,19 @@ export interface Role {
     telefono: string;  
     user: User;        
   }
+
+  export interface Paciente {
+    id: number;
+    ci: string;
+    sexo: string;
+    telefono: string;
+    user: {
+      id: number;
+      username: string;
+      email: string;
+      password: string;
+      roles: string[];
+    };
+  }
   
   

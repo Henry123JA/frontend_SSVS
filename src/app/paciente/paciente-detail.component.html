@@ -1,0 +1,18 @@
+<!-- src/app/paciente/paciente-detail.component.html -->
+<div *ngIf="paciente; else loading">
+    <h2>Detalles del Paciente</h2>
+    <div>
+        <p><strong>ID: </strong> {{ paciente.id }}</p>
+        <p><strong>Cédula de Identidad (CI): </strong> {{ paciente.ci || 'N/A' }}</p>
+        <p><strong>Sexo: </strong> {{ paciente.sexo || 'N/A' }}</p>
+        <p><strong>Teléfono: </strong> {{ paciente.telefono || 'N/A' }}</p>
+        <p><strong>Username: </strong> {{ paciente.user.username }}</p>
+        <p><strong>Email: </strong> {{ paciente.user.email }}</p>
+    </div>
+
+    <button (click)="goBackToList()" class="btn btn-primary">Volver a la lista</button>
+</div>
+
+<ng-template #loading>
+    <p>Cargando datos del paciente...</p>
+</ng-template>
