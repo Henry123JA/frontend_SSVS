@@ -9,7 +9,7 @@ import { UserService } from '../_services/user.service';
 export class HomeComponent implements OnInit {
   content?: string;
 
-  constructor(private userService: UserService) { }
+  constructor(public userService: UserService) { }
 
   ngOnInit(): void {
     this.userService.getPublicContent().subscribe({

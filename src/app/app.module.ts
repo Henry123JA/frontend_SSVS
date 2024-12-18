@@ -22,6 +22,9 @@ import { MedicoListComponent } from './medico/medico-list.component';
 import { MedicoCreateComponent } from './medico/medico-create.component'; 
 import { MedicoDetailComponent } from './medico/medico-detail.component';
 import { MedicoEditComponent } from './medico/medico-edit.component';
+import { PacienteListComponent } from './paciente/paciente-list.component';
+import { PacienteCreateComponent } from './paciente/paciente-create.component';
+import { PacienteDetailComponent } from './paciente/paciente-detail.component';
 import { EspecialidadListComponent } from './especialidad/especialidad-list.component';
 import { EspecialidadCreateComponent } from './especialidad/especialidad-create.component';
 import { MedicoEspecialidadListComponent } from './medico/medico-especialidad-list.component';
@@ -50,6 +53,9 @@ import { LogoutComponent } from './logout/logout.component';
     EspecialidadListComponent,
     EspecialidadCreateComponent,
     MedicoEspecialidadListComponent,
+    PacienteListComponent,
+    PacienteCreateComponent,
+    PacienteDetailComponent,
     BitacoraDetailComponent,
     LogoutComponent,
   ],

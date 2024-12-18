@@ -1,0 +1,76 @@
+/* src/app/paciente/paciente-create.component.css */
+.paciente-create {
+    font-family: Arial, sans-serif;
+    margin: 20px;
+}
+
+h2 {
+    margin-bottom: 20px;
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+button {
+    margin-top: 10px;
+}
+
+.alert {
+    margin-top: 15px;
+}
+
+/* Estilos adicionales para el formulario */
+input[type="text"],
+input[type="email"],
+input[type="date"],
+select {
+    width: 100%;
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    font-size: 16px;
+}
+
+input[type="text"]:focus,
+input[type="email"]:focus,
+input[type="date"]:focus,
+select:focus {
+    outline: none;
+    border-color: #007bff;
+}
+
+button {
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    border-radius: 5px;
+    border: none;
+}
+
+button.btn-primary {
+    background-color: #007bff;
+    color: white;
+}
+
+button.btn-outline-warning {
+    background-color: transparent;
+    border: 1px solid #ffc107;
+    color: #ffc107;
+}
+
+button.btn-outline-warning:hover {
+    background-color: #ffc107;
+    color: white;
+}
+
+button.btn-outline-success {
+    background-color: transparent;
+    border: 1px solid #28a745;
+    color: #28a745;
+}
+
+button.btn-outline-success:hover {
+    background-color: #28a745;
+    color: white;
+}

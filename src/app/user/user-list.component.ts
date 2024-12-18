@@ -2,8 +2,8 @@
 import { Component, OnInit } from '@angular/core';
 import { UserService } from '../user2.service';
 import { User } from '../model/user.model';
-//import { error } from 'console';
 import { BitacoraService } from '../bitacora.service';
+import { RoleService } from '../role.service';
 
 @Component({
   selector: 'app-user-list',
@@ -11,12 +11,14 @@ import { BitacoraService } from '../bitacora.service';
   styleUrls: ['./user-list.component.css']
 })
 export class UserListComponent implements OnInit {
-  users: User[] = [];
+  public users: User[] = [];
+  showAdminBoard = false;
   
 
-  constructor(private userService: UserService,private bitacoraService: BitacoraService )  {}
+  constructor(public userService: UserService,public bitacoraService: BitacoraService,private roleService: RoleService )  {}
   
   ngOnInit(): void {
+    this.showAdminBoard = this.roleService.hasRole('ROLE_ADMIN');
     this.userService.getUsers().subscribe(
       (data) => {
       this.users = data

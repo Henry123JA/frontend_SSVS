@@ -10,9 +10,9 @@ import { BitacoraService } from '../bitacora.service';
   styleUrls: ['./especialidad-list.component.css']
 })
 export class EspecialidadListComponent implements OnInit {
-  especialidades: Especialidad[] = [];
+  public especialidades: Especialidad[] = [];
 
-  constructor(private especialidadService: EspecialidadService,private bitacoraService: BitacoraService ) {}
+  constructor(public especialidadService: EspecialidadService,public bitacoraService: BitacoraService ) {}
 
   ngOnInit(): void {
     this.especialidadService.getEspecialidades().subscribe(

@@ -13,7 +13,7 @@ import { TokenStorageService } from '../_services/token-storage.service';
   styleUrls: ['./user-edit.component.css']
 })
 export class UserEditComponent implements OnInit {
-  user: User;
+  public user: User;
   availableRoles: string[] = ['ROLE_PACIENTE', 'ROLE_MEDICO', 'ROLE_ADMIN'];  // Definimos los roles disponibles
   isSuccessful: boolean = false;
   isUpdateFailed: boolean = false;
@@ -21,10 +21,10 @@ export class UserEditComponent implements OnInit {
   isRolesRequired: boolean = false;
 
   constructor(
-    private userService: UserService, 
+    public userService: UserService, 
     private route: ActivatedRoute,
     private router: Router,
-    private bitacoraService: BitacoraService ,
+    public bitacoraService: BitacoraService ,
     private tokenStorageService: TokenStorageService 
   ) {
     this.user = { id: 0, username: '', email: '', password: '', roles: [] };  // Inicia con roles vacíos

@@ -8,13 +8,13 @@ import { Medico } from '../model/user.model';    // Ajusta la ruta si es necesar
   selector: 'app-medico-detail',
   templateUrl: './medico-detail.component.html',
   styleUrls: ['./medico-detail.component.css'],
-})
+}) //paciente-detail.component
 export class MedicoDetailComponent implements OnInit {
-  medico: Medico | null = null;
-  errorMessage: string = '';
+  public medico: Medico | null = null;
+  public errorMessage: string = '';
 
   constructor(
-    private medicoService: MedicoService,
+    public medicoService: MedicoService,
     private route: ActivatedRoute,
     private router: Router
   ) {}

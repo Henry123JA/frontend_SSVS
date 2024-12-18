@@ -7,9 +7,9 @@ import { UserService } from '../_services/user.service';
   styleUrls: ['./board-admin.component.css']
 })
 export class BoardAdminComponent implements OnInit {
-  content?: string;
+  public content?: string;
 
-  constructor(private userService: UserService) { }
+  constructor(public userService: UserService) { }
 
   ngOnInit(): void {
     this.userService.getAdminBoard().subscribe({

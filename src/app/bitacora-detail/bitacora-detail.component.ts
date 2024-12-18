@@ -11,13 +11,13 @@ declare var jsPDF: any;
   styleUrls: ['./bitacora-detail.component.css']
 })
 export class BitacoraDetailComponent implements OnInit {
-  bitacoras: Bitacora[] = [];
+  public bitacoras: Bitacora[] = [];
   userId: number = 0;
-  usuario: User | undefined;
+  public usuario: User | undefined;
 
   constructor(
-    private bitacoraService: BitacoraService,
-    private userService: UserService,
+    public bitacoraService: BitacoraService,
+    public userService: UserService,
     private route: ActivatedRoute
   ) {}
 

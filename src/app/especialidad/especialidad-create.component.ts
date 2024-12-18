@@ -12,15 +12,15 @@ import { BitacoraService } from '../bitacora.service';
   styleUrls: ['./especialidad-create.component.css']
 })
 export class EspecialidadCreateComponent implements OnInit {
-  especialidad: Especialidad;
+  public especialidad: Especialidad;
   isSuccessful: boolean = false;
   isCreateFailed: boolean = false;
-  errorMessage: string = ''; 
+  public errorMessage: string = ''; 
   isDescriptionRequired: boolean = false;
 
   constructor(
-    private especialidadService: EspecialidadService,
-    private bitacoraService: BitacoraService, 
+    public especialidadService: EspecialidadService,
+    public bitacoraService: BitacoraService, 
     private router: Router
   ) {
     this.especialidad = { id: 0, nombre: '', descripcion: '' }; 

@@ -11,7 +11,7 @@ import { BitacoraService } from '../bitacora.service';
   styleUrls: ['./user-create.component.css']
 })
 export class UserCreateComponent implements OnInit {
-  user: User;
+  public user: User;
   availableRoles: string[] = ['ROLE_PACIENTE', 'ROLE_MEDICO', 'ROLE_ADMIN'];  // Roles disponibles
   isSuccessful: boolean = false;
   isCreateFailed: boolean = false;
@@ -19,9 +19,9 @@ export class UserCreateComponent implements OnInit {
   isRolesRequired: boolean = false;
 
   constructor(
-    private userService: UserService, 
+    public userService: UserService, 
     private router: Router,
-    private bitacoraService: BitacoraService 
+    public bitacoraService: BitacoraService 
   ) {
     this.user = { id: 0, username: '', email: '', password: '', roles: [] }; 
   }

@@ -1,0 +1,205 @@
+<!-- src/app/paciente/paciente-create.component.html -->
+<div class="col-md-12">
+    <div class="card card-container">
+      <h2>Crear Nuevo Paciente</h2>
+      <form name="createForm" (ngSubmit)="f.form.valid && createPaciente()" #f="ngForm" novalidate>
+        
+        <!-- Username Field -->
+        <div class="form-group">
+          <label for="username">Username</label>
+          <input
+            type="text"
+            id="username"
+            class="form-control"
+            name="username"
+            [(ngModel)]="paciente.user.username"
+            required
+            minlength="3"
+            maxlength="20"
+            #username="ngModel"
+          />
+          <div class="alert alert-danger" *ngIf="username.errors && f.submitted">
+            <div *ngIf="username.errors['required']">Username es obligatorio.</div>
+            <div *ngIf="username.errors['minlength']">
+              El Username debe tener al menos 3 caracteres.
+            </div>
+            <div *ngIf="username.errors['maxlength']">
+              El Username no puede tener más de 20 caracteres.
+            </div>
+          </div>
+        </div>
+  
+        <!-- Email Field -->
+        <div class="form-group">
+          <label for="email">Email</label>
+          <input
+            type="email"
+            id="email"
+            class="form-control"
+            name="email"
+            [(ngModel)]="paciente.user.email"
+            required
+            email
+            #email="ngModel"
+          />
+          <div class="alert alert-danger" *ngIf="email.errors && f.submitted">
+            <div *ngIf="email.errors['required']">Email es obligatorio.</div>
+            <div *ngIf="email.errors['email']">
+              Debe ser un email válido.
+            </div>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="password">Password</label>
+          <input
+            type="password"
+            id="password"
+            class="form-control"
+            name="password"
+            [(ngModel)]="paciente.user.password"
+            minlength="6"
+            placeholder="Ingrese una contraseña de al menos 6 caracteres..."
+            #password="ngModel"
+          />
+          <div class="alert alert-danger" *ngIf="password.errors && f.submitted && password.value">
+            <div *ngIf="password.errors['minlength']">
+              Password must be at least 6 characters
+            </div>
+          </div>
+        </div>
+
+  
+        <!-- Cédula Field -->
+        <div class="form-group">
+          <label for="ci">Cédula</label>
+          <input
+            type="text"
+            id="ci"
+            class="form-control"
+            name="ci"
+            [(ngModel)]="paciente.ci"
+            required
+            minlength="6"
+            maxlength="15"
+            #ci="ngModel"
+          />
+          <div class="alert alert-danger" *ngIf="ci.errors && f.submitted">
+            <div *ngIf="ci.errors['required']">Cédula es obligatoria.</div>
+            <div *ngIf="ci.errors['minlength']">
+              La cédula debe tener al menos 6 caracteres.
+            </div>
+            <div *ngIf="ci.errors['maxlength']">
+              La cédula no puede tener más de 15 caracteres.
+            </div>
+          </div>
+        </div>
+  
+        <!-- Sexo Field -->
+        <div class="form-group">
+          <label for="sexo">Sexo</label>
+          <select
+            id="sexo"
+            class="form-control"
+            name="sexo"
+            [(ngModel)]="paciente.sexo"
+            required
+            #sexo="ngModel"
+          >
+            <option value="" disabled selected>Seleccionar</option>
+            <option value="O">No binario</option>
+            <option value="M">Masculino</option>
+            <option value="F">Femenino</option>
+          </select>
+          <div class="alert alert-danger" *ngIf="sexo.errors && f.submitted">
+            <div *ngIf="sexo.errors['required']">El sexo es obligatorio.</div>
+          </div>
+        </div>
+  
+        <!-- Teléfono Field -->
+        <div class="form-group">
+          <label for="telefono">Teléfono</label>
+          <input
+            type="text"
+            id="telefono"
+            class="form-control"
+            name="telefono"
+            [(ngModel)]="paciente.telefono"
+            required
+            minlength="7"
+            maxlength="15"
+            #telefono="ngModel"
+          />
+          <div class="alert alert-danger" *ngIf="telefono.errors && f.submitted">
+            <div *ngIf="telefono.errors['required']">Teléfono es obligatorio.</div>
+            <div *ngIf="telefono.errors['minlength']">
+              El teléfono debe tener al menos 7 caracteres.
+            </div>
+            <div *ngIf="telefono.errors['maxlength']">
+              El teléfono no puede tener más de 15 caracteres.
+            </div>
+          </div>
+        </div>
+  
+        <!-- Fecha de Nacimiento Field -->
+        <div class="form-group">
+          <label for="fechaNacimiento">Fecha de Nacimiento</label>
+          <input
+            type="date"
+            id="fechaNacimiento"
+            class="form-control"
+            name="fechaNacimiento"
+            [(ngModel)]="paciente.fechaNacimiento"
+            required
+            #fechaNacimiento="ngModel"
+          />
+          
+          <div class="alert alert-danger" *ngIf="fechaNacimiento.errors && f.submitted">
+            <div *ngIf="fechaNacimiento.errors['required']">La fecha de nacimiento es obligatoria.</div>
+          </div>
+        </div>
+  
+        <!-- Código Asegurado Field -->
+        <div class="form-group">
+          <label for="codigoAsegurado">Código Asegurado</label>
+          <input
+            type="text"
+            id="codigoAsegurado"
+            class="form-control"
+            name="codigoAsegurado"
+            [(ngModel)]="paciente.codigoAsegurado"
+            required
+            minlength="4"
+            maxlength="15"
+            #codigoAsegurado="ngModel"
+          />
+          <div class="alert alert-danger" *ngIf="codigoAsegurado.errors && f.submitted">
+            <div *ngIf="codigoAsegurado.errors['required']">El código asegurado es obligatorio.</div>
+            <div *ngIf="codigoAsegurado.errors['minlength']">
+              El código asegurado debe tener al menos 4 caracteres.
+            </div>
+            <div *ngIf="codigoAsegurado.errors['maxlength']">
+              El código asegurado no puede tener más de 15 caracteres.
+            </div>
+          </div>
+        </div>
+  
+        <!-- Submit Button -->
+        <div class="form-group">
+          <button class="btn btn-primary btn-block">Crear Paciente</button>
+          <button class="btn btn-outline-warning btn-block" routerLink="/paciente-list">Volver</button>
+        </div>
+  
+        <!-- Error Message -->
+        <div class="alert alert-warning" *ngIf="f.submitted && isCreateFailed">
+          ¡La creación falló!<br />{{ errorMessage }}
+        </div>
+      </form>
+  
+      <!-- Success Message -->
+      <div class="alert alert-success" *ngIf="isSuccessful">
+        ¡Paciente creado con éxito!
+      </div>
+    </div>
+  </div>
+  

@@ -11,14 +11,14 @@ import { BitacoraService } from '../bitacora.service';
   styleUrls: ['./user-detail.component.css']
 })
 export class UserDetailComponent implements OnInit {
-  user: User | null = null;
+  public user: User | null = null;
   errorMessage: string = '';
   name : string = '';
   constructor(
-    private userService: UserService,
+    public userService: UserService,
     private route: ActivatedRoute,
     private router: Router,
-    private bitacoraService: BitacoraService 
+    public bitacoraService: BitacoraService 
   ) {}
 
   ngOnInit(): void {

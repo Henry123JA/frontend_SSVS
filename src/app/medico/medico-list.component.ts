@@ -9,9 +9,9 @@ import { Medico } from '../model/user.model';  // Modelo de médico
   styleUrls: ['./medico-list.component.css']
 })
 export class MedicoListComponent implements OnInit {
-  medicos: Medico[] = [];
+  public medicos: Medico[] = [];
 
-  constructor(private medicoService: MedicoService) {}
+  constructor(public medicoService: MedicoService) {}
 
   ngOnInit(): void {
     this.loadMedicos();  // Cargar los médicos cuando se inicializa el componente

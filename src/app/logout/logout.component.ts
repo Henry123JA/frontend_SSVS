@@ -13,8 +13,8 @@ import { Observable } from 'rxjs';
 export class LogoutComponent implements OnInit {
 
   constructor(
-    private tokenStorageService: TokenStorageService,
-    private bitacoraService: BitacoraService,
+    public tokenStorageService: TokenStorageService,
+    public bitacoraService: BitacoraService,
     private router: Router
   ) { }
 

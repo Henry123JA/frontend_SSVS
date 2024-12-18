@@ -1,0 +1,44 @@
+/* src/app/paciente/paciente-detail.component.css */
+.paciente-detail {
+    max-width: 800px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.paciente-detail h2 {
+    font-size: 2rem;
+    margin-bottom: 20px;
+}
+
+.paciente-detail .paciente-info {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.paciente-detail .paciente-info label {
+    font-weight: bold;
+}
+
+.paciente-detail .paciente-info p {
+    font-size: 1.1rem;
+    color: #555;
+}
+
+button {
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: background-color 0.3s;
+}
+
+button:hover {
+    background-color: #0056b3;
+}

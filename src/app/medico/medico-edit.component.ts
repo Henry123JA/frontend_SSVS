@@ -9,13 +9,13 @@ import { Medico } from '../model/user.model'; // Asegúrate de que esta ruta sea
   styleUrls: ['./medico-edit.component.css']
 })
 export class MedicoEditComponent implements OnInit {
-  medico: Medico;
+  public medico: Medico;
   isSuccessful: boolean = false;
   isUpdateFailed: boolean = false;
-  errorMessage: string = '';
+  public errorMessage: string = '';
 
   constructor(
-    private medicoService: MedicoService, 
+    public medicoService: MedicoService, 
     private route: ActivatedRoute,
     private router: Router
   ) {

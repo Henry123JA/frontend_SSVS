@@ -11,13 +11,13 @@ import { Especialidad } from '../model/especialidad.model';  // Modelo de especi
   styleUrls: ['./medico-especialidad-list.component.css']
 })
 export class MedicoEspecialidadListComponent implements OnInit {
-  medicos: any[] = [];
-  especialidades: Especialidad[] = [];
+  public medicos: any[] = [];
+  public especialidades: Especialidad[] = [];
   
 
   constructor(
-    private medicoService: MedicoService,
-    private especialidadService: EspecialidadService
+    public medicoService: MedicoService,
+    public especialidadService: EspecialidadService
   ) {}
 
   ngOnInit(): void {

@@ -10,16 +10,16 @@ import { Medico } from '../model/user.model';
   styleUrls: ['./medico-create.component.css'],
 })
 export class MedicoCreateComponent implements OnInit {
-  medico: Medico = { id: 0, ci: '', sexo: '', telefono: '',
+  public medico: Medico = { id: 0, ci: '', sexo: '', telefono: '',
     user: {id: 0, username: '', email: '', password:'', roles: [],},
   };
 
   isSuccessful: boolean = false;
   isCreateFailed: boolean = false;
-  errorMessage: string = ''; 
+  public errorMessage: string = ''; 
 
   constructor(
-    private medicoService: MedicoService,
+    public medicoService: MedicoService,
     private router: Router
   ) {}
 

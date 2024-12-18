@@ -7,9 +7,9 @@ import { UserService } from '../_services/user.service';
   styleUrls: ['./board-moderator.component.css']
 })
 export class BoardModeratorComponent implements OnInit {
-  content?: string;
+  public content?: string;
 
-  constructor(private userService: UserService) { }
+  constructor(public userService: UserService) { }
 
   ngOnInit(): void {
     this.userService.getModeratorBoard().subscribe({
