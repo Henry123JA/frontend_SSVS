@@ -30,6 +30,8 @@ import { EspecialidadCreateComponent } from './especialidad/especialidad-create.
 import { MedicoEspecialidadListComponent } from './medico/medico-especialidad-list.component';
 import { authInterceptorProviders } from './_helpers/auth.interceptor';
 import { BitacoraDetailComponent } from './bitacora-detail/bitacora-detail.component';
+import { HorarioListComponent } from './horario/horario-list.component';
+import { HorarioCreateComponent } from './horario/horario-create.component';
 import { LogoutComponent } from './logout/logout.component';
 
 @NgModule({
@@ -56,6 +58,8 @@ import { LogoutComponent } from './logout/logout.component';
     PacienteListComponent,
     PacienteCreateComponent,
     PacienteDetailComponent,
+    HorarioListComponent,
+    HorarioCreateComponent,
     BitacoraDetailComponent,
     LogoutComponent,
   ],

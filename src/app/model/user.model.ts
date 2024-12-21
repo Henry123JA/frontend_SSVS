@@ -18,16 +18,27 @@ export interface Role {
     telefono: string;  
     user: User;        
   }
+  
   export interface Paciente {
     id: number;
     ci: string;        
     sexo: string;      
     telefono: string;  
     user: User;        
-    fechaNacimiento: string;  // Suponiendo que la fecha es una cadena de texto en formato "YYYY-MM-DD"
+    fechaNacimiento: string;
     codigoAsegurado: string; 
   }
   
+  export interface Horario {
+    id: number;             
+    horaInicio: Date;       
+    horaFin: Date;          
+    duracion: number;       // Duración en minutos
+    diaSemana: string;      // Día de la semana (por ejemplo, 'Lunes', 'Martes')
+    estado: string;         // Estado del horario (por ejemplo, 'activo', 'inactivo')
+    medico: Medico;       
+  }
+
   export interface Bitacora {
     id: number;  // ID del registro
     tipoAccion: string;  // Tipo de acción: 'CREAR', 'EDITAR', 'VER'

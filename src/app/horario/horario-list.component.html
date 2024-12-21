@@ -1,0 +1,42 @@
+<div class="horario-list">
+    <h2>Lista de Horarios</h2>
+  
+    <div class="mb-3">
+      <button class="btn btn-primary" routerLink="/horario-create">Crear Nuevo Horario</button>
+    </div>
+  
+    <table>
+      <thead>
+       
+        <tr>
+          <th>ID</th>
+          <th>Hora de Inicio</th>
+          <th>Hora de Fin</th>
+          <th>Duración (minutos)</th>
+          <th>Día de la Semana</th>
+          <th>Estado</th>
+          <th>Médico</th>
+          <th>Acciones</th>
+        </tr>
+        <tr *ngIf="horarios.length === 0">
+          <td colspan="10">No hay horarios disponibles</td>
+      </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let horario of horarios">
+          <td>{{ horario.id }}</td>
+          <td>{{ horario.horaInicio }}</td>  <!-- Formateamos la hora -->
+          <td>{{ horario.horaFin }}</td>     <!-- Formateamos la hora -->
+          <td>{{ horario.duracion }}</td>
+          <td>{{ horario.diaSemana }}</td>
+          <td>{{ horario.estado }}</td>
+          <td>{{ horario.medico.user.username }}</td>  <!-- Mostrar el ID del médico asignado -->
+
+          <td>
+            <button class="btn btn-outline-success" routerLink="/horario-detail/{{horario.id}}">Ver</button>
+            <button class="btn btn-outline-danger" (click)="borrar(horario.id)">Eliminar</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+</div>

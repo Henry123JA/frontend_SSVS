@@ -28,6 +28,9 @@ import { EspecialidadCreateComponent } from './especialidad/especialidad-create.
 
 import { MedicoEspecialidadListComponent } from './medico/medico-especialidad-list.component';
 
+import { HorarioListComponent } from './horario/horario-list.component';
+import { HorarioCreateComponent } from './horario/horario-create.component';
+
 const routes: Routes = [
   { path: 'home', component: HomeComponent },
   { path: 'logout', component: LogoutComponent },
@@ -51,6 +54,9 @@ const routes: Routes = [
   { path: 'especialidad/create', component: EspecialidadCreateComponent },
 
   { path: 'medico-especialidad-list', component: MedicoEspecialidadListComponent },
+
+  { path: 'horario-list', component: HorarioListComponent },
+  { path: 'horario-create', component: HorarioCreateComponent },
 
   { path: 'admin', component: BoardAdminComponent },
   //{ path: 'user/list', component: UserListComponent },

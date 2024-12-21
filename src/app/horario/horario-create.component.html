@@ -1,0 +1,139 @@
+<!-- src/app/horario/horario-create.component.html -->
+<div class="col-md-12">
+    <div class="card card-container">
+      <h2>Crear Nuevo Horario</h2>
+      <form name="createForm" (ngSubmit)="f.form.valid && createHorario()" #f="ngForm" novalidate>
+        <!-- Día de la semana Field -->
+        <div class="form-group">
+          <label for="diaSemana">Día de la semana</label>
+          <select
+            id="diaSemana"
+            class="form-control"
+            name="diaSemana"
+            [(ngModel)]="horario.diaSemana"
+            required
+            #diaSemana="ngModel"
+          >
+            <option value="" disabled selected>Seleccionar Día</option>
+            <option value="Lunes">Lunes</option>
+            <option value="Martes">Martes</option>
+            <option value="Miércoles">Miércoles</option>
+            <option value="Jueves">Jueves</option>
+            <option value="Viernes">Viernes</option>
+          </select>
+          <div class="alert alert-danger" *ngIf="diaSemana.errors && f.submitted">
+            <div *ngIf="diaSemana.errors['required']">El día de la semana es obligatorio.</div>
+          </div>
+        </div>
+  
+        <!-- Hora de inicio Field -->
+        <div class="form-group">
+          <label for="horaInicio">Hora de Inicio</label>
+          <input
+            type="time"
+            id="horaInicio"
+            class="form-control"
+            name="horaInicio"
+            [(ngModel)]="horario.horaInicio"
+            required
+            #horaInicio="ngModel"
+          />
+          <div class="alert alert-danger" *ngIf="horaInicio.errors && f.submitted">
+            <div *ngIf="horaInicio.errors['required']">La hora de inicio es obligatoria.</div>
+          </div>
+        </div>
+  
+        <!-- Hora de fin Field -->
+        <div class="form-group">
+          <label for="horaFin">Hora de Fin</label>
+          <input
+            type="time"
+            id="horaFin"
+            class="form-control"
+            name="horaFin"
+            [(ngModel)]="horario.horaFin"
+            required
+            #horaFin="ngModel"
+          />
+          <div class="alert alert-danger" *ngIf="horaFin.errors && f.submitted">
+            <div *ngIf="horaFin.errors['required']">La hora de fin es obligatoria.</div>
+          </div>
+        </div>
+  
+        <!-- Duración Field -->
+        <div class="form-group">
+          <label for="duracion">Duración (en minutos)</label>
+          <input
+            type="number"
+            id="duracion"
+            class="form-control"
+            name="duracion"
+            [(ngModel)]="horario.duracion"
+            required
+            min="1"
+            #duracion="ngModel"
+          />
+          <div class="alert alert-danger" *ngIf="duracion.errors && f.submitted">
+            <div *ngIf="duracion.errors['required']">La duración es obligatoria.</div>
+            <div *ngIf="duracion.errors['min']">La duración debe ser al menos 1 minuto.</div>
+          </div>
+        </div>
+  
+        <!-- Estado Field -->
+        <div class="form-group">
+          <label for="estado">Estado</label>
+          <select
+            id="estado"
+            class="form-control"
+            name="estado"
+            [(ngModel)]="horario.estado"
+            required
+            #estado="ngModel"
+          >
+            <option value="activo">Activo</option>
+            <option value="inactivo">Inactivo</option>
+          </select>
+          <div class="alert alert-danger" *ngIf="estado.errors && f.submitted">
+            <div *ngIf="estado.errors['required']">El estado es obligatorio.</div>
+          </div>
+        </div>
+  
+        <div class="form-group">
+            <label for="medico">Seleccionar Médico</label>
+            <select
+              id="medico"
+              class="form-control"
+              name="medico"
+              [(ngModel)]="horario.medico.id"
+              required
+              #medico="ngModel"
+            >
+              <option value="" disabled selected>Seleccionar Médico</option>
+              <option *ngFor="let medic of medicos" [value]="medic.id">
+                {{ medic.user.username }} <!-- Muestra el nombre del médico -->
+              </option>
+            </select>
+            <div class="alert alert-danger" *ngIf="medico.errors && f.submitted">
+              <div *ngIf="medico.errors['required']">El médico es obligatorio.</div>
+            </div>
+          </div>
+  
+        <!-- Submit Button -->
+        <div class="form-group">
+          <button class="btn btn-primary btn-block">Crear Horario</button>
+          <button class="btn btn-outline-warning btn-block" routerLink="/horario-list">Volver</button>
+        </div>
+  
+        <!-- Error Message -->
+        <div class="alert alert-warning" *ngIf="f.submitted && isCreateFailed">
+          ¡La creación falló!<br />{{ errorMessage }}
+        </div>
+      </form>
+  
+      <!-- Success Message -->
+      <div class="alert alert-success" *ngIf="isSuccessful">
+        ¡Horario creado con éxito!
+      </div>
+    </div>
+  </div>
+  
