@@ -34,6 +34,9 @@
         <li class="nav-item" *ngIf="showModeratorBoard || showAdminBoard">
           <a class="nav-link custom-nav-link" routerLink="/horario-list">Horario</a>
         </li>
+        <li class="nav-item" *ngIf="showUserBoard || showAdminBoard || showModeratorBoard">
+          <a class="nav-link custom-nav-link" routerLink="/ficha-list">Ficha</a>
+        </li>
         <li class="nav-item" *ngIf="showUserBoard">
           <a href="/paciente" class="nav-link custom-nav-link" *ngIf="isLoggedIn" routerLink="paciente">Paciente Board</a>
         </li>

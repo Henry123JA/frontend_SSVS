@@ -1,4 +1,8 @@
-// src/app/user/user.model.ts
+// src/app/user.model.ts
+
+import { Time } from '@angular/common';
+import { Especialidad } from './especialidad.model';
+
 export interface Role {
     id: number;
     name: string;
@@ -37,6 +41,26 @@ export interface Role {
     diaSemana: string;      // Día de la semana (por ejemplo, 'Lunes', 'Martes')
     estado: string;         // Estado del horario (por ejemplo, 'activo', 'inactivo')
     medico: Medico;       
+  }
+
+  export interface BloqueHorario {
+    id: number;                  
+    horaInicio: Date;           
+    horaFin: Date;              
+    duracion: number;             
+    estado: string;               
+    horario: Horario;             
+  }
+
+  export interface Ficha {
+    id: number;
+    paciente: Paciente;  // Relación con la entidad Paciente
+    medicoId: number;    // ID del médico
+    especialidad: Especialidad;  // Relación con la entidad Especialidad
+    bloqueHorario: BloqueHorario;  // Relación con la entidad BloqueHorario
+    fecha: string;  // Fecha de la cita (formato 'YYYY-MM-DD')
+    hora: string;   // Hora de la cita (formato 'HH:mm')
+    estado: string; // Estado de la cita ('pendiente', 'completada', 'cancelada')
   }
 
   export interface Bitacora {

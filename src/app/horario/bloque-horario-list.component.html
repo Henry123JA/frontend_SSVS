@@ -1,0 +1,36 @@
+<div class="bloque-horario-list">
+    <h2>Lista de Bloques de Horario</h2>
+
+    <div class="mb-3">
+        <button class="btn btn-primary" routerLink="/horario-list">Volver</button>
+      </div>
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Hora de Inicio</th>
+                <th>Hora de Fin</th>
+                <th>Duración (minutos)</th>
+                <th>Estado</th>
+                <th>Horario</th>
+                <th>Acciones</th>
+            </tr>
+            <tr *ngIf="bloques.length === 0">
+                <td colspan="7">No hay bloques de horario disponibles</td>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let bloque of bloques">
+                <td>{{ bloque.id }}</td>
+                <td>{{ bloque.horaInicio }}</td>  <!-- Formateamos la hora -->
+                <td>{{ bloque.horaFin }}</td>     <!-- Formateamos la hora -->
+                <td>{{ bloque.duracion }}</td>
+                <td>{{ bloque.estado }}</td>
+                <td>{{ bloque.horario.diaSemana }} - {{ bloque.horario.horaInicio }} a {{ bloque.horario.horaFin }}</td>  <!-- Mostrar el horario asociado -->
+                <td>
+                    <button class="btn btn-outline-danger" (click)="borrar(bloque.id)">Eliminar</button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>

@@ -1,0 +1,41 @@
+<div class="ficha-list">
+    <h2>Lista de Fichas</h2>
+  
+    <div class="mb-3">
+      <button *ngIf="!RoleService.hasRole('ROLE_MEDICO')" class="btn btn-primary" routerLink="/ficha-create">Crear Nueva Ficha</button>
+    </div>
+  
+    <table>
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Paciente</th>
+          <th>Médico</th>
+          <th>Especialidad</th>
+          <th>Fecha</th>
+          <th>Hora</th>
+          <th>Estado</th>
+          <th>Acciones</th>
+        </tr>
+        <tr *ngIf="fichas.length === 0">
+          <td colspan="8">No hay fichas disponibles</td>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let ficha of fichas">
+          <td>{{ ficha.id }}</td>
+          <td>{{ ficha.paciente.user.username }}</td>  <!-- Mostrar nombre de paciente -->
+          <td>{{ ficha.medicoId }}</td>  <!-- Mostrar ID del médico -->
+          <td>{{ ficha.especialidad.nombre }}</td>  <!-- Mostrar nombre de la especialidad -->
+          <td>{{ ficha.fecha }}</td>  <!-- Mostrar fecha -->
+          <td>{{ ficha.hora }}</td>   <!-- Mostrar hora -->
+          <td>{{ ficha.estado }}</td> <!-- Mostrar estado de la ficha -->
+          
+          <td>
+            <button *ngIf="!RoleService.hasRole('ROLE_MEDICO')" class="btn btn-outline-danger" (click)="borrar(ficha.id)">Eliminar</button>
+            <button class="btn btn-outline-primary" (click)="imprimirFicha(ficha.id)">Imprimir</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+</div>

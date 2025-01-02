@@ -32,6 +32,9 @@ import { authInterceptorProviders } from './_helpers/auth.interceptor';
 import { BitacoraDetailComponent } from './bitacora-detail/bitacora-detail.component';
 import { HorarioListComponent } from './horario/horario-list.component';
 import { HorarioCreateComponent } from './horario/horario-create.component';
+import { FichaListComponent } from './ficha/ficha-list.component';
+import { FichaCreateComponent } from './ficha/ficha-create.component';
+import { BloqueHorarioListComponent } from './horario/bloque-horario-list.component';
 import { LogoutComponent } from './logout/logout.component';
 
 @NgModule({
@@ -60,6 +63,9 @@ import { LogoutComponent } from './logout/logout.component';
     PacienteDetailComponent,
     HorarioListComponent,
     HorarioCreateComponent,
+    FichaListComponent,
+    FichaCreateComponent,
+    BloqueHorarioListComponent,
     BitacoraDetailComponent,
     LogoutComponent,
   ],

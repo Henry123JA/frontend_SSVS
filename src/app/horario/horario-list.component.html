@@ -35,6 +35,8 @@
           <td>
             <button class="btn btn-outline-success" routerLink="/horario-detail/{{horario.id}}">Ver</button>
             <button class="btn btn-outline-danger" (click)="borrar(horario.id)">Eliminar</button>
+            <button class="btn btn-outline-primary" *ngIf="horario.estado === 'inactivo'" (click)="crearBloques(horario)">Crear Bloques</button>
+            <button class="btn btn-outline-info" (click)="verBloques(horario.id)">Ver Bloques</button>
           </td>
         </tr>
       </tbody>

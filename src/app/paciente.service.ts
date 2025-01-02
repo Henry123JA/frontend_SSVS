@@ -62,4 +62,18 @@ export class PacienteService {
     return this.http.get<Paciente>(`${this.apiUrl}/${id}`, { headers });
   }
 
+  // Método para obtener pacientes por userId
+  getPacientesByUserId(userId: number): Observable<Paciente[]> {
+    const token = this.tokenStorage.getToken();
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+    
+    return this.http.get<Paciente[]>(`${this.apiUrl}/byUser/${userId}`, { headers }).pipe(
+      catchError(error => {
+        if (error.status === 401) {
+          console.log('Token no válido o no autorizado');
+        }
+        return throwError(error); // Manejo de errores
+      })
+    );
+  }
 }

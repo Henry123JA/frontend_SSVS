@@ -1,0 +1,145 @@
+<div class="col-md-12">
+    <div class="card card-container">
+      <h2>Crear Ficha Médica</h2>
+      <form name="createForm" (ngSubmit)="f.form.valid && createFicha()" #f="ngForm" novalidate>
+        
+        <!-- Médico Field -->
+        <div class="form-group">
+          <label for="medico">Seleccionar Médico</label>
+          <select
+            id="medico"
+            class="form-control"
+            name="medico"
+            [(ngModel)]="ficha.medicoId"
+            (change)="onMedicoChange(ficha.medicoId)"
+            required
+            #medico="ngModel"
+          >
+            <option value="" disabled selected>Seleccionar Médico</option>
+            <option *ngFor="let medic of medicos" [value]="medic.id">
+              {{ medic.user.username }}
+            </option>
+          </select>
+          <div class="alert alert-danger" *ngIf="medico.errors && f.submitted">
+            <div *ngIf="medico.errors['required']">El médico es obligatorio.</div>
+          </div>
+        </div>
+  
+        <!-- Especialidad Field -->
+        <div class="form-group">
+          <label for="especialidad">Seleccionar Especialidad</label>
+          <select
+            id="especialidad"
+            class="form-control"
+            name="especialidad"
+            [(ngModel)]="ficha.especialidad.id"
+            required
+            #especialidad="ngModel"
+          >
+            <option value="" disabled selected>Seleccionar Especialidad</option>
+            <option *ngFor="let especialidad of especialidades" [value]="especialidad.id">
+              {{ especialidad.nombre }}
+            </option>
+          </select>
+          <div class="alert alert-danger" *ngIf="especialidad.errors && f.submitted">
+            <div *ngIf="especialidad.errors['required']">La especialidad es obligatoria.</div>
+          </div>
+        </div>
+  
+        <!-- Paciente Field -->
+        <div class="form-group">
+            <label for="paciente">Seleccionar Paciente</label>
+            <select
+              id="paciente"
+              class="form-control"
+              name="paciente"
+              [(ngModel)]="ficha.paciente.id"
+              (change)="onPacienteChange(ficha.paciente.id)"
+              required
+              #paciente="ngModel"
+            >
+              <option value="" disabled selected>Seleccionar Paciente</option>
+              <option *ngFor="let paciente of pacientes" [value]="paciente.id">
+                {{ paciente.ci }} - {{ paciente.user.username }}  <!-- Muestra CI y nombre del paciente -->
+              </option>
+            </select>
+            <div class="alert alert-danger" *ngIf="paciente.errors && f.submitted">
+              <div *ngIf="paciente.errors['required']">El paciente es obligatorio.</div>
+            </div>
+          </div>
+
+        <!-- Día de la semana Field -->
+        <div class="form-group">
+          <label for="diaSemana">Día de la semana</label>
+          <select
+            id="diaSemana"
+            class="form-control"
+            name="diaSemana"
+            [(ngModel)]="ficha.bloqueHorario.horario.id"
+            (change)="onHorarioChange(ficha.bloqueHorario.horario.id)"
+            required
+            #diaSemana="ngModel"
+          >
+            <option value="" disabled selected>Seleccionar Día</option>
+            <option *ngFor="let horario of horarios2" [value]="horario.id">
+              {{ horario.diaSemana }}
+            </option>
+          </select>
+          <div class="alert alert-danger" *ngIf="diaSemana.errors && f.submitted">
+            <div *ngIf="diaSemana.errors['required']">El día de la semana es obligatorio.</div>
+          </div>
+        </div>
+  
+        <!-- Bloques Horarios Table -->
+        <div *ngIf="bloquesHorarios.length > 0">
+          <table class="table">
+            <thead>
+              <tr>
+                <th>Hora Inicio</th>
+                <th>Hora Fin</th>
+                <th>Duración</th>
+                <th>Estado</th>
+                <th>Seleccionar</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let bloque of bloquesHorarios">
+                <td>{{ bloque.horaInicio }}</td>
+                <td>{{ bloque.horaFin }}</td>
+                <td>{{ bloque.duracion }} min</td>
+                <td>{{bloque.estado }}</td>
+                <td>
+                  <input
+                    type="radio"
+                    name="bloqueHorario"
+                    [(ngModel)]="ficha.bloqueHorario"
+                    [value]="bloque"
+                  />
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+  
+        <!-- Submit Button -->
+        <div class="form-group">
+          <button class="btn btn-primary btn-block"
+          [disabled]="!isBloqueHorarioLibre()"
+          >Crear Ficha</button>
+          <button class="btn btn-outline-warning btn-block" routerLink="/ficha-list">Volver</button>
+        </div>
+  
+        <!-- Error Message -->
+        <div class="alert alert-warning" *ngIf="f.submitted && isCreateFailed">
+          ¡La creación falló!<br />{{ errorMessage }}
+        </div>
+  
+      </form>
+  
+      <!-- Success Message -->
+      <div class="alert alert-success" *ngIf="isSuccessful">
+        ¡Ficha creada con éxito!
+      </div>
+    </div>
+  </div>
+  

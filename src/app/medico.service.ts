@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Medico } from './model/user.model';  // Aquí importas el modelo Medico
+import { Especialidad } from './model/especialidad.model';
 import { TokenStorageService } from './_services/token-storage.service';
 import { catchError } from 'rxjs/operators';
 import { throwError } from 'rxjs';
@@ -111,6 +112,20 @@ export class MedicoService {
     return this.http.get<any[]>(url, { headers }).pipe(
       catchError(error => {
         console.error('Error al obtener médicos con especialidades:', error);
+        return throwError(error);  // Manejo de errores
+      })
+    );
+  }
+
+  // Método para obtener las especialidades de un médico dado su ID
+  getEspecialidadesByMedicoId(medicoId: number): Observable<Especialidad[]> {
+    const token = this.tokenStorage.getToken();
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+    const url = `${this.apiUrl}/${medicoId}/especialidades`;  // Endpoint para obtener especialidades por ID de médico
+    
+    return this.http.get<Especialidad[]>(url, { headers }).pipe(
+      catchError(error => {
+        console.error('Error al obtener especialidades del médico:', error);
         return throwError(error);  // Manejo de errores
       })
     );
