@@ -2,9 +2,11 @@
 import { Component, OnInit } from '@angular/core';
 import { FichaService } from '../ficha.service';  // Servicio para manejar fichas
 import { RoleService } from '../role.service';
+import { EspecialidadService } from '../especialidad.service';
 import { TokenStorageService } from '../_services/token-storage.service';
 import { Router } from '@angular/router';
 import { Ficha } from '../model/user.model';  // Modelo de ficha
+import { Especialidad } from '../model/especialidad.model';  // Modelo de ficha
 
 @Component({
   selector: 'app-ficha-list',
@@ -13,6 +15,7 @@ import { Ficha } from '../model/user.model';  // Modelo de ficha
 })
 export class FichaListComponent implements OnInit {
   public fichas: Ficha[] = [];  // Lista de fichas
+  public especialidades: Especialidad[] = []; 
   public userId: number = 0 ; 
 
   constructor(
@@ -20,6 +23,7 @@ export class FichaListComponent implements OnInit {
     public router: Router,  // Router para navegación
     public RoleService: RoleService,
     private tokenStorage: TokenStorageService,
+    public especialidadService: EspecialidadService,
   ) {}
 
   ngOnInit(): void {
@@ -27,6 +31,7 @@ export class FichaListComponent implements OnInit {
     this.userId = usuario.id; 
 
     if(this.RoleService.hasRole("ROLE_ADMIN")){
+      this.loadEspecialidades(); 
       this.loadFichas();
     }else{
       if(this.RoleService.hasRole("ROLE_MEDICO")){
@@ -35,6 +40,35 @@ export class FichaListComponent implements OnInit {
         this.loadFichasPac();
       }
       
+    }
+  }
+
+  // Obtener la lista de especialidades
+  loadEspecialidades(): void {
+    this.especialidadService.getEspecialidades().subscribe(
+      (data) => {
+        this.especialidades = data;  // Asignamos las especialidades a la propiedad
+      },
+      (error) => {
+        console.error('Error al obtener las especialidades:', error);
+      }
+    );
+  }
+
+  // Filtrar fichas por especialidad
+  onEspecialidadSelect(event: any): void {
+    const especialidadId = event.target.value;
+    if (especialidadId) {
+      this.fichaService.getFichasByEspecialidad(especialidadId).subscribe(
+        (data) => {
+          this.fichas = data;  // Asignamos las fichas filtradas a la propiedad
+        },
+        (error) => {
+          console.error('Error al obtener las fichas filtradas por especialidad:', error);
+        }
+      );
+    } else {
+      this.loadFichas();  // Si no hay especialidad seleccionada, cargar todas las fichas
     }
   }
 

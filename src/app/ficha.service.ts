@@ -92,6 +92,22 @@ export class FichaService {
       })
     );
   }
+
+  // Obtener fichas por especialidad
+  getFichasByEspecialidad(especialidadId: number): Observable<Ficha[]> {
+    const token = this.tokenStorage.getToken();
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+    
+    // Llamada al endpoint para obtener fichas filtradas por especialidad
+    return this.http.get<Ficha[]>(`${this.apiUrl}/especialidad/${especialidadId}`, { headers }).pipe(
+      catchError(error => {
+        if (error.status === 401) {
+          console.log('Token no válido o no autorizado');
+        }
+        return throwError(error);  // Manejo de errores
+      })
+    );
+  }
   
   // Obtener ficha por ID de la ficha
   getFichaById(id: number): Observable<Ficha> {

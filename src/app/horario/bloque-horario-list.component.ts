@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { HorarioService } from '../horario.service';  // Servicio para manejar bloques de horario
 import { Router,ActivatedRoute } from '@angular/router';
 import { BloqueHorario,Horario } from '../model/user.model';    // Modelo de bloque horario
+import { BitacoraService } from '../bitacora.service';
 
 @Component({
   selector: 'app-bloque-horario-list',
@@ -12,7 +13,9 @@ export class BloqueHorarioListComponent implements OnInit {
   public bloques: BloqueHorario[] = [];  // Array para almacenar los bloques de horario
   public horarioId: number = 0;
 
-  constructor(private bloqueHorarioService: HorarioService,private route: ActivatedRoute) {}
+  constructor(private bloqueHorarioService: HorarioService,
+              private bitacoraService: BitacoraService,
+              private route: ActivatedRoute) {}
 
   ngOnInit(): void {
     this.route.paramMap.subscribe(params => {
@@ -29,6 +32,7 @@ export class BloqueHorarioListComponent implements OnInit {
     this.bloqueHorarioService.getBloquesByHorarioId(this.horarioId).subscribe(
       (bloques) => {
         this.bloques = bloques;  // Asignar los bloques al array
+        this.registrarAccion(this.horarioId);
         console.log('Bloques de horario:', this.bloques);
       },
       (error) => {
@@ -49,5 +53,17 @@ export class BloqueHorarioListComponent implements OnInit {
         }
       );
     }
+  }
+
+  registrarAccion(name: any): void {
+    // Usamos el nombre del usuario para registrar la acción
+    this.bitacoraService.registrarAccion('VISTO', `VISTEADO del bloque de Horario con Id: ${name}`).subscribe(
+      (bitacora) => {
+        console.log('Acción registrada: ', bitacora);
+      },
+      (err) => {
+        console.error('Error al registrar acción: ', err);
+      }
+    );
   }
 }

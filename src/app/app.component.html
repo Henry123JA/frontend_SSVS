@@ -6,57 +6,73 @@
     </button>
     
     <div class="collapse navbar-collapse" id="navbarNav">
-      <ul class="navbar-nav mr-auto" routerLinkActive="active">
+      <ul class="navbar-nav mr-auto">
+
+        <!-- Home -->
         <li class="nav-item">
-          <a href="/home" class="nav-link custom-nav-link" routerLink="home">Home </a>
+          <a class="nav-link custom-nav-link" routerLink="/home">Home</a>
         </li>
-        <li class="nav-item" *ngIf="showAdminBoard">
-          <a href="/admin" class="nav-link custom-nav-link" routerLink="admin">Admin Board</a>
+
+        <!-- Administración -->
+        <li class="nav-item dropdown" *ngIf="showAdminBoard">
+          <a class="nav-link dropdown-toggle" href="#" id="adminDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Administración
+          </a>
+          <div class="dropdown-menu" aria-labelledby="adminDropdown">
+            <a class="dropdown-item" routerLink="/userlist">Usuarios</a>
+            <a class="dropdown-item" routerLink="/medico-list">Médicos</a>
+            <a class="dropdown-item" routerLink="/especialidadlist">Especialidad</a>
+            <a class="dropdown-item" routerLink="/medico-especialidad-list">Médico-Especialidad</a>
+            <a class="dropdown-item" routerLink="/antecedente-list">Antecedentes</a>
+          </div>
         </li>
-        <li class="nav-item" *ngIf="showAdminBoard">
-          <a class="nav-link custom-nav-link" routerLink="/userlist">Usuarios</a>
-        </li><!--
-        <li class="nav-item" *ngIf="showModeratorBoard">
-          <a href="/medico" class="nav-link custom-nav-link" routerLink="medico2">Medico Board</a>
-        </li>-->
-        <li class="nav-item" *ngIf="showModeratorBoard || showAdminBoard">
-          <a class="nav-link custom-nav-link" routerLink="/medico-list">Medicos</a>
+
+        <!-- Gestión Médica -->
+        <li class="nav-item dropdown" *ngIf="showModeratorBoard || showAdminBoard">
+          <a class="nav-link dropdown-toggle" href="#" id="gestionDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Gestión Médica
+          </a>
+          <div class="dropdown-menu" aria-labelledby="gestionDropdown">
+            <a class="dropdown-item" routerLink="/horario-list">Horario</a>
+            <a class="dropdown-item" routerLink="/consulta-list">Consulta</a>
+            <a class="dropdown-item" routerLink="/receta-list">Receta</a>
+            <a class="dropdown-item" routerLink="/examen-list">Examen</a>
+            <a class="dropdown-item" routerLink="/tratamiento-list">Tratamiento</a>
+          </div>
         </li>
-        <li class="nav-item" *ngIf="showModeratorBoard || showAdminBoard">
-          <a class="nav-link custom-nav-link" routerLink="/paciente-list">Pacientes</a>
-        </li>
-        <li class="nav-item" *ngIf="showModeratorBoard || showAdminBoard">
-          <a class="nav-link custom-nav-link" routerLink="/especialidadlist">Especialidad</a>
-        </li>     
-        <li class="nav-item" *ngIf="showModeratorBoard || showAdminBoard">
-          <a class="nav-link custom-nav-link" routerLink="/medico-especialidad-list">Medico-Especialidad</a>
-        </li>
-        <li class="nav-item" *ngIf="showModeratorBoard || showAdminBoard">
-          <a class="nav-link custom-nav-link" routerLink="/horario-list">Horario</a>
-        </li>
+
+        <!-- Fichas -->
         <li class="nav-item" *ngIf="showUserBoard || showAdminBoard || showModeratorBoard">
           <a class="nav-link custom-nav-link" routerLink="/ficha-list">Ficha</a>
         </li>
-        <li class="nav-item" *ngIf="showUserBoard">
-          <a href="/paciente" class="nav-link custom-nav-link" *ngIf="isLoggedIn" routerLink="paciente">Paciente Board</a>
+
+        <!-- Pacientes -->
+        <li class="nav-item" *ngIf="showUserBoard || showModeratorBoard || showAdminBoard">
+          <a class="nav-link custom-nav-link" routerLink="/paciente-list">Pacientes</a>
+        </li>
+
+        <!-- Paciente Board -->
+        <li class="nav-item" *ngIf="showUserBoard && isLoggedIn">
+          <a class="nav-link custom-nav-link" routerLink="/paciente">Paciente Board</a>
         </li>
       </ul>
 
+      <!-- Menú de Autenticación -->
       <ul class="navbar-nav ml-auto" *ngIf="!isLoggedIn">
         <li class="nav-item">
-          <a href="/register" class="nav-link custom-nav-link" routerLink="register">Registrarse</a>
+          <a class="nav-link custom-nav-link" routerLink="/register">Registrarse</a>
         </li>
         <li class="nav-item">
-          <a href="/login" class="nav-link custom-nav-link" routerLink="login">Iniciar Sesion</a>
+          <a class="nav-link custom-nav-link" routerLink="/login">Iniciar Sesión</a>
         </li>
       </ul>
 
       <ul class="navbar-nav ml-auto" *ngIf="isLoggedIn">
         <li class="nav-item">
-          <a href="/profile" class="nav-link custom-nav-link" routerLink="profile">{{ username }}</a>
+          <a class="nav-link custom-nav-link" routerLink="/profile">{{ username }}</a>
         </li>
         <li class="nav-item">
-          <a href class="nav-link custom-nav-link" (click)="logout()">Cerrar Sesion</a>
+          <a href="#" class="nav-link custom-nav-link" (click)="logout()">Cerrar Sesión</a>
         </li>
       </ul>
     </div>
@@ -66,5 +82,3 @@
     <router-outlet></router-outlet>
   </div>
 </div>
-
-

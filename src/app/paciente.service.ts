@@ -76,4 +76,18 @@ export class PacienteService {
       })
     );
   }
+
+   // Obtener los pacientes asociadas a un médico (por userId)
+   getPacientesByMedico(userId: number): Observable<any[]> {  // Cambié el tipo de retorno a cualquier tipo de objeto (en el backend se mapea a un objeto)
+    const token = this.tokenStorage.getToken();
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+    return this.http.get<any[]>(`${this.apiUrl}/medico/${userId}`, { headers }).pipe(  // Aquí se conecta con el método que hicimos en el backend
+      catchError(error => {
+        if (error.status === 401) {
+          console.log('Token no válido o no autorizado');
+        }
+        return throwError(error);  // Manejo de errores
+      })
+    );
+  }
 }

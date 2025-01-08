@@ -1,0 +1,46 @@
+
+<div class="tratamiento-list">
+    <h2>Lista de Tratamientos</h2>
+  
+    <!-- Botón para crear un nuevo tratamiento -->
+    <div class="mb-3">
+      <button *ngIf="!roleService.hasRole('ROLE_PACIENTE')" class="btn btn-primary" routerLink="/tratamiento-create">Crear Nuevo Tratamiento</button>
+    </div>
+  
+    <!-- Tabla para mostrar los tratamientos -->
+    <div class="table-responsive">
+      <table class="table">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Consulta ID</th>
+            <th>Descripción</th>
+            <th>Fecha de Inicio</th>
+            <th>Fecha de Fin</th>
+            <th>Seguimiento</th>
+            <th>Acciones</th>
+          </tr>
+          <!-- Mensaje cuando no hay tratamientos -->
+          <tr *ngIf="tratamientos.length === 0">
+            <td colspan="7">No hay tratamientos disponibles</td>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let tratamiento of tratamientos">
+            <td>{{ tratamiento.id }}</td>
+            <td>{{ tratamiento.consultaId }}</td>  <!-- Consulta asociada al tratamiento -->
+            <td>{{ tratamiento.descripcion }}</td>  <!-- Descripción del tratamiento -->
+            <td>{{ tratamiento.fechaInicio }}</td>  <!-- Fecha de inicio del tratamiento -->
+            <td>{{ tratamiento.fechaFin }}</td>  <!-- Fecha de fin del tratamiento -->
+            <td>{{ tratamiento.seguimiento }}</td>  <!-- Seguimiento del tratamiento -->
+            <td>
+              <!-- Mostrar el botón de eliminar solo si el rol no es 'ROLE_PACIENTE' -->
+              <button *ngIf="!roleService.hasRole('ROLE_PACIENTE')" class="btn btn-outline-danger" (click)="borrar(tratamiento.id)">Eliminar</button>
+              <!-- Botón para ver los detalles del tratamiento -->
+              <button class="btn btn-outline-info" (click)="verDetalles(tratamiento.id)">Ver Detalles</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>

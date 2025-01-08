@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { HorarioService } from '../horario.service'; 
 import { MedicoService } from '../medico.service'; 
 import { Medico,Horario } from '../model/user.model';
+import { BitacoraService } from '../bitacora.service';
 
 @Component({
   selector: 'app-horario-create',
@@ -32,6 +33,7 @@ export class HorarioCreateComponent implements OnInit {
   constructor(
     private horarioService: HorarioService,
     public medicoService: MedicoService,
+    public bitacoraService: BitacoraService,
     private router: Router
   ) {}
 
@@ -53,11 +55,24 @@ export class HorarioCreateComponent implements OnInit {
       (data) => {
         this.isSuccessful = true;
         this.isCreateFailed = false;
+        this.registrarAccion(this.horario.medico.user.username,this.horario.diaSemana);
         this.router.navigate(['/horario-list']);
       },
       (err) => {
         this.isCreateFailed = true;
         this.errorMessage = err.error.message;
+      }
+    );
+  }
+
+  registrarAccion(name: string,dia: string): void {
+    // Usamos el nombre del usuario para registrar la acción
+    this.bitacoraService.registrarAccion('CREAR', `CREAR Horario del medico: ${name} del dia ${dia}`).subscribe(
+      (bitacora) => {
+        console.log('Acción registrada: ', bitacora);
+      },
+      (err) => {
+        console.error('Error al registrar acción: ', err);
       }
     );
   }

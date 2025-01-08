@@ -35,6 +35,24 @@ import { BloqueHorarioListComponent } from './horario/bloque-horario-list.compon
 import { FichaListComponent } from './ficha/ficha-list.component';
 import { FichaCreateComponent } from './ficha/ficha-create.component';
 
+import { RecetaListComponent } from './receta/receta-list.component';
+import { RecetaCreateComponent } from './receta/receta-create.component';
+
+import { ConsultaListComponent } from './consulta/consulta-list.component';
+import { ConsultaCreateComponent } from './consulta/consulta-create.component';
+
+import { AntecedenteListComponent } from './antecedente/antecedente-list.component';
+import { AntecedenteCreateComponent } from './antecedente/antecedente-create.component';
+import { AntecedenteUpdateComponent } from './antecedente/antecedente-update.component';
+
+import { TratamientoListComponent } from './tratamiento/tratamiento-list.component';
+import { TratamientoCreateComponent } from './tratamiento/tratamiento-create.component';
+
+import { ExamenListComponent } from './examen/examen-list.component';
+import { ExamenCreateComponent } from './examen/examen-create.component';
+
+import { HistorialComponent } from './historial/historial.component';
+
 const routes: Routes = [
   { path: 'home', component: HomeComponent },
   { path: 'logout', component: LogoutComponent },
@@ -65,6 +83,25 @@ const routes: Routes = [
 
   { path: 'ficha-list', component: FichaListComponent },
   { path: 'ficha-create', component: FichaCreateComponent },
+
+  { path: 'receta-list', component: RecetaListComponent },
+  { path: 'receta-create', component: RecetaCreateComponent },
+
+  { path: 'tratamiento-list', component: TratamientoListComponent },
+  { path: 'tratamiento-create', component: TratamientoCreateComponent },
+
+  { path: 'examen-list', component: ExamenListComponent },
+  { path: 'examen-create', component: ExamenCreateComponent },
+
+  { path: 'consulta-list', component: ConsultaListComponent },
+  { path: 'consulta-create', component: ConsultaCreateComponent },
+
+  { path: 'historial/:id', component: HistorialComponent },
+
+
+  { path: 'antecedente-list', component: AntecedenteListComponent },
+  { path: 'antecedente-create', component: AntecedenteCreateComponent },
+  { path: 'antecedente-update/:id', component: AntecedenteUpdateComponent },
 
   { path: 'admin', component: BoardAdminComponent },
   //{ path: 'user/list', component: UserListComponent },

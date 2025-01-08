@@ -2,7 +2,7 @@
     <h2>Lista de Horarios</h2>
   
     <div class="mb-3">
-      <button class="btn btn-primary" routerLink="/horario-create">Crear Nuevo Horario</button>
+      <button *ngIf="roleService.hasRole('ROLE_ADMIN')" class="btn btn-primary" routerLink="/horario-create">Crear Nuevo Horario</button>
     </div>
   
     <table>
@@ -33,10 +33,10 @@
           <td>{{ horario.medico.user.username }}</td>  <!-- Mostrar el ID del médico asignado -->
 
           <td>
-            <button class="btn btn-outline-success" routerLink="/horario-detail/{{horario.id}}">Ver</button>
-            <button class="btn btn-outline-danger" (click)="borrar(horario.id)">Eliminar</button>
-            <button class="btn btn-outline-primary" *ngIf="horario.estado === 'inactivo'" (click)="crearBloques(horario)">Crear Bloques</button>
-            <button class="btn btn-outline-info" (click)="verBloques(horario.id)">Ver Bloques</button>
+            <button *ngIf="roleService.hasRole('ROLE_ADMIN')" class="btn btn-outline-danger" (click)="borrar(horario.id)">Eliminar</button>
+            <button *ngIf="roleService.hasRole('ROLE_ADMIN') && horario.estado === 'inactivo'" 
+            class="btn btn-outline-primary" (click)="crearBloques(horario)">Crear Bloques</button>
+            <button *ngIf="!roleService.hasRole('ROLE_PACIENTE')" class="btn btn-outline-info" (click)="verBloques(horario.id)">Ver Bloques</button>
           </td>
         </tr>
       </tbody>

@@ -1,0 +1,111 @@
+<div class="col-md-12">
+    <div class="card card-container">
+      <h2>Crear Examen</h2>
+      <form name="createForm" (ngSubmit)="f.form.valid && createExamen()" #f="ngForm" novalidate>
+        
+        <!-- Consulta Field -->
+        <div class="form-group">
+          <label for="consulta">Seleccionar Consulta</label>
+          <select
+            id="consulta"
+            class="form-control"
+            name="consulta"
+            [(ngModel)]="examen.consultaId"
+            required
+            #consulta="ngModel"
+          >
+            <option value="" disabled selected>Seleccionar Consulta</option>
+            <option *ngFor="let consulta of consultas" [value]="consulta.id">
+              Consulta de {{ consulta.id }} ({{ consulta.fechaConsulta }})
+            </option>
+          </select>
+          <div class="alert alert-danger" *ngIf="consulta.errors && f.submitted">
+            <div *ngIf="consulta.errors['required']">La consulta es obligatoria.</div>
+          </div>
+        </div>
+  
+        <!-- Laboratorio Field -->
+        <div class="form-group">
+          <label for="laboratorioNombre">Nombre del Laboratorio</label>
+          <input
+            id="laboratorioNombre"
+            class="form-control"
+            name="laboratorioNombre"
+            [(ngModel)]="examen.laboratorioNombre"
+            required
+            #laboratorioNombre="ngModel"
+          />
+          <div class="alert alert-danger" *ngIf="laboratorioNombre.errors && f.submitted">
+            <div *ngIf="laboratorioNombre.errors['required']">El nombre del laboratorio es obligatorio.</div>
+          </div>
+        </div>
+  
+        <!-- Tipo de Examen Field -->
+        <div class="form-group">
+          <label for="tipoExamen">Tipo de Examen</label>
+          <input
+            id="tipoExamen"
+            class="form-control"
+            name="tipoExamen"
+            [(ngModel)]="examen.tipoExamen"
+            required
+            #tipoExamen="ngModel"
+          />
+          <div class="alert alert-danger" *ngIf="tipoExamen.errors && f.submitted">
+            <div *ngIf="tipoExamen.errors['required']">El tipo de examen es obligatorio.</div>
+          </div>
+        </div>
+  
+        <!-- Resultados Field -->
+        <div class="form-group">
+          <label for="resultados">Resultados</label>
+          <textarea
+            id="resultados"
+            class="form-control"
+            name="resultados"
+            [(ngModel)]="examen.resultados"
+            required
+            #resultados="ngModel"
+          ></textarea>
+          <div class="alert alert-danger" *ngIf="resultados.errors && f.submitted">
+            <div *ngIf="resultados.errors['required']">Los resultados son obligatorios.</div>
+          </div>
+        </div>
+  
+        <!-- Fecha Examen Field -->
+        <div class="form-group">
+          <label for="fechaExamen">Fecha del Examen</label>
+          <input
+            type="date"
+            id="fechaExamen"
+            class="form-control"
+            name="fechaExamen"
+            [(ngModel)]="examen.fechaExamen"
+            required
+            #fechaExamen="ngModel"
+          />
+          <div class="alert alert-danger" *ngIf="fechaExamen.errors && f.submitted">
+            <div *ngIf="fechaExamen.errors['required']">La fecha del examen es obligatoria.</div>
+          </div>
+        </div>
+  
+        <!-- Submit Button -->
+        <div class="form-group">
+          <button class="btn btn-primary btn-block">Crear Examen</button>
+          <button class="btn btn-outline-warning btn-block" routerLink="/examen-list">Volver</button>
+        </div>
+  
+        <!-- Error Message -->
+        <div class="alert alert-warning" *ngIf="f.submitted && isCreateFailed">
+          ¡La creación falló!<br />{{ errorMessage }}
+        </div>
+  
+      </form>
+  
+      <!-- Success Message -->
+      <div class="alert alert-success" *ngIf="isSuccessful">
+        ¡Examen creado con éxito!
+      </div>
+    </div>
+  </div>
+  

@@ -1,0 +1,85 @@
+<div class="col-md-12">
+    <div class="card card-container">
+      <h2>Actualizar Antecedente Médico</h2>
+      <form name="updateForm" (ngSubmit)="f.form.valid && updateAntecedente()" #f="ngForm" novalidate>
+  
+        <!-- Paciente Field -->
+        <div class="form-group">
+          <label for="paciente">Seleccionar Paciente</label>
+          <select
+            id="paciente"
+            class="form-control"
+            name="paciente"
+            [(ngModel)]="antecedente.paciente.id"
+            required
+            #paciente="ngModel"
+          >
+            <option value="" disabled selected>Seleccionar Paciente</option>
+            <option *ngFor="let paciente of pacientes" [value]="paciente.id">
+              {{ paciente.ci }} - {{ paciente.user.username }}
+            </option>
+          </select>
+        </div>
+  
+        <!-- Enfermedades Base Field -->
+        <div class="form-group">
+          <label for="enfermedadesBase">Enfermedades Base</label>
+          <input
+            type="text"
+            id="enfermedadesBase"
+            class="form-control"
+            name="enfermedadesBase"
+            [(ngModel)]="antecedente.enfermedadesBase"
+            required
+            #enfermedadesBase="ngModel"
+          />
+        </div>
+  
+        <!-- Enfermedades Hereditarias Field -->
+        <div class="form-group">
+          <label for="enfermedadesHereditarias">Enfermedades Hereditarias</label>
+          <input
+            type="text"
+            id="enfermedadesHereditarias"
+            class="form-control"
+            name="enfermedadesHereditarias"
+            [(ngModel)]="antecedente.enfermedadesHereditarias"
+            required
+            #enfermedadesHereditarias="ngModel"
+          />
+        </div>
+  
+        <!-- Otras Enfermedades Field -->
+        <div class="form-group">
+          <label for="otras">Otras Enfermedades</label>
+          <input
+            type="text"
+            id="otras"
+            class="form-control"
+            name="otras"
+            [(ngModel)]="antecedente.otras"
+            required
+            #otras="ngModel"
+          />
+        </div>
+  
+        <!-- Submit Button -->
+        <div class="form-group">
+          <button class="btn btn-primary btn-block">Actualizar Antecedente</button>
+          <button class="btn btn-outline-warning btn-block" routerLink="/antecedente-list">Volver</button>
+        </div>
+  
+        <!-- Error Message -->
+        <div class="alert alert-warning" *ngIf="f.submitted && isUpdateFailed">
+          ¡La actualización falló!<br />{{ errorMessage }}
+        </div>
+  
+      </form>
+  
+      <!-- Success Message -->
+      <div class="alert alert-success" *ngIf="isSuccessful">
+        ¡Antecedente actualizado con éxito!
+      </div>
+    </div>
+  </div>
+  

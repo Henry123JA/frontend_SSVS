@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { MedicoService } from '../medico.service';  // Asegúrate de importar tu servicio
 import { Medico } from '../model/user.model';    // Ajusta la ruta si es necesario
+import { BitacoraService } from '../bitacora.service';
 
 @Component({
   selector: 'app-medico-detail',
@@ -15,6 +16,7 @@ export class MedicoDetailComponent implements OnInit {
 
   constructor(
     public medicoService: MedicoService,
+    public bitacoraService: BitacoraService,
     private route: ActivatedRoute,
     private router: Router
   ) {}
@@ -26,6 +28,7 @@ export class MedicoDetailComponent implements OnInit {
       this.medicoService.getMedicoById(Number(medicoId)).subscribe({
         next: (medico) => {
           this.medico = medico; 
+          this.registrarAccion(this.medico.user.username);
           console.log("llego a datos: ",medico); // Asignar los datos del médico al modelo
         },
         error: (err) => {
@@ -40,5 +43,17 @@ export class MedicoDetailComponent implements OnInit {
 
   goBackToList(): void {
     this.router.navigate(['/medico-list']);  // Navegar a la lista de médicos
+  }
+
+  registrarAccion(name: string): void {
+    // Usamos el nombre del usuario para registrar la acción
+    this.bitacoraService.registrarAccion('VER', `MEDICO Visteo: ${name}`).subscribe(
+      (bitacora) => {
+        console.log('Acción registrada: ', bitacora);
+      },
+      (err) => {
+        console.error('Error al registrar acción: ', err);
+      }
+    );
   }
 }

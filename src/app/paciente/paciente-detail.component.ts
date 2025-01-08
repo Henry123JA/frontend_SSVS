@@ -2,7 +2,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { PacienteService } from '../paciente.service';  // Asegúrate de importar tu servicio
-import { Paciente } from '../model/user.model';    // Ajusta la ruta si es necesario
+import { Paciente } from '../model/user.model';    
+import { BitacoraService } from '../bitacora.service';
 
 @Component({
   selector: 'app-paciente-detail',
@@ -15,6 +16,7 @@ export class PacienteDetailComponent implements OnInit {
 
   constructor(
     public pacienteService: PacienteService,
+    public bitacoraService: BitacoraService,
     private route: ActivatedRoute,
     private router: Router
   ) {}
@@ -26,7 +28,8 @@ export class PacienteDetailComponent implements OnInit {
       this.pacienteService.getPacienteById(Number(pacienteId)).subscribe({
         next: (paciente) => {
           this.paciente = paciente; 
-          console.log("llego a datos: ",paciente); // Asignar los datos del médico al modelo
+          console.log("llego a datos: ",paciente); 
+          this.registrarAccion(this.paciente.user.username);
         },
         error: (err) => {
           this.errorMessage = 'Error al cargar los datos del paciente.';
@@ -40,5 +43,17 @@ export class PacienteDetailComponent implements OnInit {
 
   goBackToList(): void {
     this.router.navigate(['/paciente-list']);  // Navegar a la lista de médicos
+  }
+
+  registrarAccion(name: string): void {
+    // Usamos el nombre del usuario para registrar la acción
+    this.bitacoraService.registrarAccion('VISTO', `PACIENTE Visteado: ${name}`).subscribe(
+      (bitacora) => {
+        console.log('Acción registrada: ', bitacora);
+      },
+      (err) => {
+        console.error('Error al registrar acción: ', err);
+      }
+    );
   }
 }

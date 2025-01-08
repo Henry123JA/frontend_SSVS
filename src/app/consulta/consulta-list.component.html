@@ -1,0 +1,46 @@
+<div class="consulta-list">
+    <h2>Lista de Consultas</h2>
+
+    <!-- Botón para crear una nueva consulta -->
+    <div class="mb-3">
+      <button *ngIf="!roleService.hasRole('ROLE_PACIENTE')" class="btn btn-primary" routerLink="/consulta-create">Crear Nueva Consulta</button>
+    </div>
+
+    <!-- Tabla para mostrar las consultas -->
+    <div class="table-responsive">
+      <table class="table">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Ficha Id</th>
+            <th>Sintomas</th>
+            <th>Diagnostico</th>
+            <th>Notas</th>
+            <th>Tratamiento</th>
+            <th>Fecha</th>
+            <th>Acciones</th>
+          </tr>
+          <!-- Mensaje cuando no hay consultas -->
+          <tr *ngIf="consultas.length === 0">
+            <td colspan="6">No hay consultas disponibles</td>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let consulta of consultas">
+            <td>{{ consulta.id }}</td>
+            <!-- Mostrar nombre del médico (usando la relación Ficha -> Medico -> User) -->
+            <td>{{ consulta.fichaId }}</td>  
+            <td>{{ consulta.sintomas }}</td>  <!-- Mostrar fecha -->
+            <td>{{ consulta.diagnostico }}</td>   <!-- Mostrar hora -->
+            <td>{{ consulta.notas }}</td> <!-- Mostrar estado de la consulta -->
+            <td>{{ consulta.tratamiento}}</td>
+            <td>{{ consulta.fechaConsulta}}</td>
+            <td>
+              <!-- Mostrar el botón de eliminar solo si el rol no es 'ROLE_PACIENTE' -->
+              <button *ngIf="!roleService.hasRole('ROLE_PACIENTE')" class="btn btn-outline-danger" (click)="borrar(consulta.id)">Eliminar</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+</div>

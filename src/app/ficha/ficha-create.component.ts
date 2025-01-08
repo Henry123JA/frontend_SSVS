@@ -9,6 +9,8 @@ import { PacienteService } from '../paciente.service';
 import { HorarioService } from '../horario.service';
 import { Medico, Ficha, BloqueHorario, Horario, Paciente } from '../model/user.model';
 import { Especialidad } from '../model/especialidad.model';
+import { BitacoraService } from '../bitacora.service';
+
 @Component({
   selector: 'app-ficha-create',
   templateUrl: './ficha-create.component.html',
@@ -45,6 +47,7 @@ export class FichaCreateComponent implements OnInit {
     private fichaService: FichaService,
     private medicoService: MedicoService,
     private especialidadService: EspecialidadService,
+    public bitacoraService: BitacoraService,
     private pacienteService: PacienteService,
     private horarioService: HorarioService,
     public RoleService: RoleService,
@@ -141,6 +144,7 @@ export class FichaCreateComponent implements OnInit {
         this.isSuccessful = true;
         this.isCreateFailed = false;
         this.router.navigate(['/ficha-list']);
+        this.registrarAccion(this.ficha.paciente.user.username);
       },
       (err) => {
         this.isCreateFailed = true;
@@ -149,6 +153,18 @@ export class FichaCreateComponent implements OnInit {
       }
     );
     
+  }
+
+  registrarAccion(name: string): void {
+    // Usamos el nombre del usuario para registrar la acción
+    this.bitacoraService.registrarAccion('CREAR', `FICHA Creada del paciente: ${name}`).subscribe(
+      (bitacora) => {
+        console.log('Acción registrada: ', bitacora);
+      },
+      (err) => {
+        console.error('Error al registrar acción: ', err);
+      }
+    );
   }
 
 

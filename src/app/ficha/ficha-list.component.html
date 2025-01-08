@@ -3,6 +3,12 @@
   
     <div class="mb-3">
       <button *ngIf="!RoleService.hasRole('ROLE_MEDICO')" class="btn btn-primary" routerLink="/ficha-create">Crear Nueva Ficha</button>
+      <!-- Select para especialidades (solo visible para ROLE_ADMIN) -->
+    <select *ngIf="RoleService.hasRole('ROLE_ADMIN')" (change)="onEspecialidadSelect($event)" class="form-select">
+      <option value="">Selecciona una especialidad</option>
+      <option *ngFor="let especialidad of especialidades" [value]="especialidad.id">{{ especialidad.nombre }}</option>
+    </select>
+
     </div>
   
     <table>

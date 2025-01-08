@@ -1,0 +1,45 @@
+<div class="examen-list">
+    <h2>Lista de Exámenes</h2>
+  
+    <!-- Botón para crear un nuevo examen -->
+    <div class="mb-3">
+      <button *ngIf="!roleService.hasRole('ROLE_PACIENTE')" class="btn btn-primary" routerLink="/examen-create">Crear Nuevo Examen</button>
+    </div>
+  
+    <!-- Tabla para mostrar los exámenes -->
+    <div class="table-responsive">
+      <table class="table">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Consulta ID</th>
+            <th>Laboratorio</th>
+            <th>Tipo de Examen</th>
+            <th>Resultados</th>
+            <th>Fecha del Examen</th>
+            <th>Acciones</th>
+          </tr>
+          <!-- Mensaje cuando no hay exámenes -->
+          <tr *ngIf="examenes.length === 0">
+            <td colspan="7">No hay exámenes disponibles</td>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let examen of examenes">
+            <td>{{ examen.id }}</td>
+            <td>{{ examen.consultaId }}</td>  <!-- Consulta asociada al examen -->
+            <td>{{ examen.laboratorioNombre }}</td>  <!-- Nombre del laboratorio -->
+            <td>{{ examen.tipoExamen }}</td>  <!-- Tipo de examen -->
+            <td>{{ examen.resultados }}</td>  <!-- Resultados del examen -->
+            <td>{{ examen.fechaExamen }}</td>  <!-- Fecha del examen -->
+            <td>
+              <!-- Mostrar el botón de eliminar solo si el rol no es 'ROLE_PACIENTE' -->
+              <button *ngIf="!roleService.hasRole('ROLE_PACIENTE')" class="btn btn-outline-danger" (click)="borrar(examen.id)">Eliminar</button>
+              <!-- Botón para ver los detalles del examen -->
+              <button class="btn btn-outline-info" (click)="verDetalles(examen.id)">Ver Detalles</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+</div>

@@ -1,0 +1,107 @@
+<div class="col-md-12">
+    <div class="card card-container">
+      <h2>Crear Tratamiento</h2>
+      <form name="createForm" (ngSubmit)="f.form.valid && createTratamiento()" #f="ngForm" novalidate>
+  
+        <!-- Consulta Field -->
+        <div class="form-group">
+            <label for="consulta">Seleccionar Consulta</label>
+            <select
+                id="consulta"
+                class="form-control"
+                name="consulta"
+                [(ngModel)]="tratamiento.consultaId"
+                required
+                #consulta="ngModel"
+            >
+                <option value="" disabled selected>Seleccionar Consulta</option>
+                <option *ngFor="let consulta of consultas" [value]="consulta.id">
+                    Consulta de {{ consulta.id }} ({{ consulta.fechaConsulta }})
+                </option>
+            </select>
+            <div class="alert alert-danger" *ngIf="consulta.errors && f.submitted">
+                <div *ngIf="consulta.errors['required']">La consulta es obligatoria.</div>
+            </div>
+        </div>
+  
+        <!-- Descripción del Tratamiento -->
+        <div class="form-group">
+            <label for="descripcion">Descripción del Tratamiento</label>
+            <textarea
+                id="descripcion"
+                class="form-control"
+                name="descripcion"
+                [(ngModel)]="tratamiento.descripcion"
+                required
+                #descripcion="ngModel"
+            ></textarea>
+            <div class="alert alert-danger" *ngIf="descripcion.errors && f.submitted">
+                <div *ngIf="descripcion.errors['required']">La descripción del tratamiento es obligatoria.</div>
+            </div>
+        </div>
+  
+        <!-- Fecha de Inicio -->
+        <div class="form-group">
+            <label for="fechaInicio">Fecha de Inicio</label>
+            <input
+                id="fechaInicio"
+                class="form-control"
+                name="fechaInicio"
+                [(ngModel)]="tratamiento.fechaInicio"
+                type="date"
+                required
+                #fechaInicio="ngModel"
+            />
+            <div class="alert alert-danger" *ngIf="fechaInicio.errors && f.submitted">
+                <div *ngIf="fechaInicio.errors['required']">La fecha de inicio es obligatoria.</div>
+            </div>
+        </div>
+  
+        <!-- Fecha de Fin -->
+        <div class="form-group">
+            <label for="fechaFin">Fecha de Fin</label>
+            <input
+                id="fechaFin"
+                class="form-control"
+                name="fechaFin"
+                [(ngModel)]="tratamiento.fechaFin"
+                type="date"
+                required
+                #fechaFin="ngModel"
+            />
+            <div class="alert alert-danger" *ngIf="fechaFin.errors && f.submitted">
+                <div *ngIf="fechaFin.errors['required']">La fecha de fin es obligatoria.</div>
+            </div>
+        </div>
+  
+        <!-- Seguimiento -->
+        <div class="form-group">
+            <label for="seguimiento">Seguimiento</label>
+            <textarea
+                id="seguimiento"
+                class="form-control"
+                name="seguimiento"
+                [(ngModel)]="tratamiento.seguimiento"
+            ></textarea>
+        </div>
+  
+        <!-- Submit Button -->
+        <div class="form-group">
+            <button class="btn btn-primary btn-block">Crear Tratamiento</button>
+            <button class="btn btn-outline-warning btn-block" routerLink="/tratamiento-list">Volver</button>
+        </div>
+  
+        <!-- Error Message -->
+        <div class="alert alert-warning" *ngIf="f.submitted && isCreateFailed">
+            ¡La creación falló!<br />{{ errorMessage }}
+        </div>
+  
+      </form>
+  
+      <!-- Success Message -->
+      <div class="alert alert-success" *ngIf="isSuccessful">
+        ¡Tratamiento creado con éxito!
+      </div>
+    </div>
+  </div>
+  

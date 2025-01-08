@@ -1,0 +1,129 @@
+<div class="col-md-12">
+    <div class="card card-container">
+      <h2>Crear Consulta Médica</h2>
+      <form name="createForm" (ngSubmit)="f.form.valid && createConsulta()" #f="ngForm" novalidate>
+    <!-- Ficha Field -->
+        <div class="form-group">
+            <label for="ficha">Seleccionar Ficha</label>
+            <select
+            id="ficha"
+            class="form-control"
+            name="ficha"
+            [(ngModel)]="consulta.fichaId"
+            required
+            #ficha="ngModel"
+            (change)="onAntecedentesChange()"
+            >
+            <option value="" disabled selected>Seleccionar Ficha</option>
+            <option *ngFor="let ficha of fichas" [value]="ficha.id">
+                Ficha de Id {{ ficha.id }} - {{ ficha.paciente.ci }} - {{ ficha.paciente.user.username }} ({{ ficha.especialidad.nombre }})
+            </option>
+            </select>
+            <div class="alert alert-danger" *ngIf="ficha.errors && f.submitted">
+            <div *ngIf="ficha.errors['required']">La ficha es obligatoria.</div>
+            </div>
+        </div>
+        
+        <!-- Antecedentes -->
+        <div *ngIf="antecedentes; else sinAntecedentes">
+            <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">Antecedentes del Paciente</h5>
+                <p><strong>Enfermedades Base:</strong> {{ antecedentes.enfermedadesBase }}</p>
+                <p><strong>Enfermedades Hereditarias:</strong> {{ antecedentes.enfermedadesHereditarias }}</p>
+                <p><strong>Otras Enfermedades:</strong> {{ antecedentes.otras }}</p>
+            </div>
+            </div>
+        </div>
+        
+        <ng-template #sinAntecedentes>
+            <div class="alert alert-info">
+            El paciente no tiene antecedentes registrados.
+            </div>
+        </ng-template>
+  
+    
+        <!-- Sintomas Field -->
+        <div class="form-group">
+          <label for="sintomas">Sintomas</label>
+          <textarea
+            id="sintomas"
+            class="form-control"
+            name="sintomas"
+            [(ngModel)]="consulta.sintomas"
+            required
+            #sintomas="ngModel"
+          ></textarea>
+          <div class="alert alert-danger" *ngIf="sintomas.errors && f.submitted">
+            <div *ngIf="sintomas.errors['required']">Los síntomas son obligatorios.</div>
+          </div>
+        </div>
+    
+        <!-- Diagnóstico Field -->
+        <div class="form-group">
+          <label for="diagnostico">Diagnóstico</label>
+          <textarea
+            id="diagnostico"
+            class="form-control"
+            name="diagnostico"
+            [(ngModel)]="consulta.diagnostico"
+            required
+            #diagnostico="ngModel"
+          ></textarea>
+          <div class="alert alert-danger" *ngIf="diagnostico.errors && f.submitted">
+            <div *ngIf="diagnostico.errors['required']">El diagnóstico es obligatorio.</div>
+          </div>
+        </div>
+    
+        <!-- Tratamiento Field -->
+        <div class="form-group">
+          <label for="tratamiento">Tratamiento</label>
+          <textarea
+            id="tratamiento"
+            class="form-control"
+            name="tratamiento"
+            [(ngModel)]="consulta.tratamiento"
+            required
+            #tratamiento="ngModel"
+          ></textarea>
+          <div class="alert alert-danger" *ngIf="tratamiento.errors && f.submitted">
+            <div *ngIf="tratamiento.errors['required']">El tratamiento es obligatorio.</div>
+          </div>
+        </div>
+    
+        <!-- Notas Field -->
+        <div class="form-group">
+          <label for="notas">Notas</label>
+          <textarea
+            id="notas"
+            class="form-control"
+            name="notas"
+            [(ngModel)]="consulta.notas"
+            required
+            #notas="ngModel"
+          ></textarea>
+          <div class="alert alert-danger" *ngIf="notas.errors && f.submitted">
+            <div *ngIf="notas.errors['required']">Las notas son obligatorias.</div>
+          </div>
+        </div>
+    
+        <!-- Submit Button -->
+        <div class="form-group">
+          <button class="btn btn-primary btn-block">Crear Consulta</button>
+          <button class="btn btn-outline-warning btn-block" routerLink="/consulta-list">Volver</button>
+        </div>
+    
+        <!-- Error Message -->
+        <div class="alert alert-warning" *ngIf="f.submitted && isCreateFailed">
+          ¡La creación falló!<br />{{ errorMessage }}
+        </div>
+    
+      </form>
+    
+      <!-- Success Message -->
+      <div class="alert alert-success" *ngIf="isSuccessful">
+        ¡Consulta creada con éxito!
+      </div>
+    </div>
+  </div>
+  

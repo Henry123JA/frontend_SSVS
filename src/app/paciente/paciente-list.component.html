@@ -3,7 +3,7 @@
     <h2>Lista de Pacientes</h2>
   
     <div class="mb-3">
-      <button class="btn btn-primary" routerLink="/paciente-create">Crear Nuevo Paciente</button>
+      <button *ngIf="roleService.hasRole('ROLE_ADMIN')" class="btn btn-primary" routerLink="/paciente-create">Crear Nuevo Paciente</button>
     </div>
   
     <table>
@@ -38,7 +38,8 @@
           <td>ROLE_PACIENTE</td>
           <td>
             <button class="btn btn-outline-success" routerLink="/paciente-detail/{{paciente.id}}">Ver</button>
-            <button class="btn btn-outline-danger" (click)="borrar(paciente.id)">Eliminar</button>
+            <button class="btn btn-outline-lila" routerLink="/historial/{{paciente.id}}">Historial</button>
+            <button *ngIf="roleService.hasRole('ROLE_ADMIN')" class="btn btn-outline-danger" (click)="borrar(paciente.id)">Eliminar</button>
           </td>
         </tr>
       </tbody>

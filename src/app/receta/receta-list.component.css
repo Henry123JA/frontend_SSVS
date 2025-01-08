@@ -1,0 +1,50 @@
+.receta-list {
+    font-family: Arial, sans-serif;
+    margin: 20px;
+  }
+  
+  table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  th, td {
+    padding: 8px 12px;
+    border: 1px solid #ddd;
+  }
+  
+  th {
+    background-color: #f4f4f4;
+  }
+  
+  /* Hacer la tabla responsiva con Bootstrap */
+  .table-responsive {
+    overflow-x: auto; /* Permite el desplazamiento horizontal si es necesario */
+  }
+  
+  /* Hacer que los botones se ajusten mejor */
+  button {
+    margin-right: 5px;
+    margin-top: 5px;
+  }
+  
+  /* Responsividad para dispositivos móviles */
+  @media (max-width: 768px) {
+    .receta-list table {
+      font-size: 12px; /* Ajustar el tamaño de la fuente en pantallas pequeñas */
+    }
+  
+    .receta-list h2 {
+      font-size: 1.5rem;
+    }
+  
+    .receta-list button {
+      width: 100%;
+      margin-top: 10px;
+    }
+  
+    .receta-list .mb-3 {
+      text-align: center;
+    }
+  }
+  

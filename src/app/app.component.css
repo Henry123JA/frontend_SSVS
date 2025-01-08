@@ -22,3 +22,17 @@
 .custom-nav-link:hover {
     color: #007bff; /* Cambia el color al pasar el ratón */
 }
+
+.navbar .dropdown-menu {
+  background-color: #075203;
+}
+
+.navbar .dropdown-item {
+  color: white;
+}
+
+.navbar .dropdown-item:hover {
+  background-color: #046502;
+  color: #fff;
+}
+

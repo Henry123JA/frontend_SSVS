@@ -63,6 +63,43 @@ export interface Role {
     estado: string; // Estado de la cita ('pendiente', 'completada', 'cancelada')
   }
 
+  
+  export interface Consulta {
+    id: number;
+    fichaId: number; // Relación con la entidad FichaNueva
+    sintomas: string;
+    diagnostico: string;
+    tratamiento: string;
+    notas: string;
+    fechaConsulta: string;  // Fecha de la consulta (formato ISO 8601 'YYYY-MM-DDTHH:mm:ss.sssZ')
+  }
+  
+  export interface Receta{
+    id: number;
+    medicamentos: string;
+    indicaciones: string;
+    fechaConsulta: string;
+    consultaId: number;
+  }
+
+  export interface Tratamiento {
+    id: number;
+    consultaId: number;  // ID de la consulta asociada
+    descripcion: string;  // Descripción del tratamiento
+    fechaInicio: string;  // Fecha de inicio del tratamiento (formato ISO 8601 'YYYY-MM-DD')
+    fechaFin: string;  // Fecha de fin del tratamiento (formato ISO 8601 'YYYY-MM-DD')
+    seguimiento: string | null;  // Seguimiento del tratamiento (puede ser null)
+  }
+
+  export interface Examen {
+    id: number;
+    consultaId: number;  
+    laboratorioNombre: string; 
+    tipoExamen: string;  // Fecha de inicio del tratamiento (formato ISO 8601 'YYYY-MM-DD')
+    resultados: string;  // Fecha de fin del tratamiento (formato ISO 8601 'YYYY-MM-DD')
+    fechaExamen: string;  // Seguimiento del tratamiento (puede ser null)
+  }
+  
   export interface Bitacora {
     id: number;  // ID del registro
     tipoAccion: string;  // Tipo de acción: 'CREAR', 'EDITAR', 'VER'
@@ -71,5 +108,15 @@ export interface Role {
     fechaHora: string;  // Fecha y hora cuando ocurrió la acción
     userId: number;
     
+  }
+
+
+  export interface Antecedente {
+    id: number;
+    paciente: Paciente;                          // Relación con Paciente
+    enfermedadesBase: string;                    // Antecedentes personales (enfermedades base)
+    enfermedadesHereditarias: string;            // Antecedentes familiares (enfermedades hereditarias)
+    otras: string;                               // Antecedentes personales no patológicos
+    fecha: string;                               // Fecha de creación de los antecedentes
   }
   

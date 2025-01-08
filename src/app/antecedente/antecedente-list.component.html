@@ -1,0 +1,40 @@
+<!-- src/app/antecedente/antecedente-list.component.html -->
+<div class="antecedente-list">
+    <h2>Lista de Antecedentes</h2>
+
+    <div class="mb-3">
+      <button *ngIf="!roleService.hasRole('ROLE_PACIENTE')" class="btn btn-primary" routerLink="/antecedente-create">Crear Nuevo Antecedente</button>
+    </div>
+
+    <table>
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Paciente</th>
+          <th>Enfermedades Base</th>
+          <th>Enfermedades Hereditarias</th>
+          <th>Otras Condiciones</th>
+          <th>Fecha</th>
+          <th>Acciones</th>
+        </tr>
+        <tr *ngIf="antecedentes.length === 0">
+          <td colspan="7">No hay antecedentes disponibles</td>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let antecedente of antecedentes">
+          <td>{{ antecedente.id }}</td>
+          <td>{{ antecedente.paciente.user.username }}</td>  <!-- Mostrar nombre de paciente -->
+          <td>{{ antecedente.enfermedadesBase }}</td>  <!-- Mostrar enfermedades base -->
+          <td>{{ antecedente.enfermedadesHereditarias }}</td>  <!-- Mostrar enfermedades hereditarias -->
+          <td>{{ antecedente.otras }}</td>  <!-- Mostrar otras condiciones -->
+          <td>{{ antecedente.fecha }}</td>  <!-- Mostrar fecha de creación -->
+
+          <td>
+            <button class="btn btn-outline-danger" (click)="borrar(antecedente.id)">Eliminar</button>
+            <button *ngIf="!roleService.hasRole('ROLE_PACIENTE')" class="btn btn-outline-warning" routerLink="/antecedente-update/{{antecedente.id}}">Editar</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+</div>

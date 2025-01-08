@@ -1,0 +1,78 @@
+<div class="col-md-12">
+    <div class="card card-container">
+      <h2>Crear Receta Médica</h2>
+      <form name="createForm" (ngSubmit)="f.form.valid && createReceta()" #f="ngForm" novalidate>
+        
+        <!-- Consulta Field -->
+        <div class="form-group">
+            <label for="consulta">Seleccionar Consulta</label>
+            <select
+                id="consulta"
+                class="form-control"
+                name="consulta"
+                [(ngModel)]="receta.consultaId"
+                required
+                #consulta="ngModel"
+            >
+                <option value="" disabled selected>Seleccionar Consulta</option>
+                <option *ngFor="let consulta of consultas" [value]="consulta.id">
+                    Consulta de {{ consulta.id }} ({{ consulta.fechaConsulta }})
+                </option>
+            </select>
+            <div class="alert alert-danger" *ngIf="consulta.errors && f.submitted">
+                <div *ngIf="consulta.errors['required']">La consulta es obligatoria.</div>
+            </div>
+        </div>
+
+        <!-- Medicamentos Field -->
+        <div class="form-group">
+            <label for="medicamentos">Medicamentos</label>
+            <textarea
+                id="medicamentos"
+                class="form-control"
+                name="medicamentos"
+                [(ngModel)]="receta.medicamentos"
+                required
+                #medicamentos="ngModel"
+            ></textarea>
+            <div class="alert alert-danger" *ngIf="medicamentos.errors && f.submitted">
+                <div *ngIf="medicamentos.errors['required']">Los medicamentos son obligatorios.</div>
+            </div>
+        </div>
+
+        <!-- Indicaciones Field -->
+        <div class="form-group">
+            <label for="indicaciones">Indicaciones</label>
+            <textarea
+                id="indicaciones"
+                class="form-control"
+                name="indicaciones"
+                [(ngModel)]="receta.indicaciones"
+                required
+                #indicaciones="ngModel"
+            ></textarea>
+            <div class="alert alert-danger" *ngIf="indicaciones.errors && f.submitted">
+                <div *ngIf="indicaciones.errors['required']">Las indicaciones son obligatorias.</div>
+            </div>
+        </div>
+
+
+        <!-- Submit Button -->
+        <div class="form-group">
+            <button class="btn btn-primary btn-block">Crear Receta</button>
+            <button class="btn btn-outline-warning btn-block" routerLink="/receta-list">Volver</button>
+        </div>
+
+        <!-- Error Message -->
+        <div class="alert alert-warning" *ngIf="f.submitted && isCreateFailed">
+            ¡La creación falló!<br />{{ errorMessage }}
+        </div>
+
+      </form>
+
+      <!-- Success Message -->
+      <div class="alert alert-success" *ngIf="isSuccessful">
+        ¡Receta creada con éxito!
+      </div>
+    </div>
+</div>

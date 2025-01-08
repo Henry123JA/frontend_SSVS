@@ -1,0 +1,33 @@
+.receta-create {
+    font-family: Arial, sans-serif;
+    margin: 20px;
+  }
+  
+  h2 {
+    margin-bottom: 20px;
+  }
+  
+  .form-group {
+    margin-bottom: 15px;
+  }
+  
+  button {
+    margin-top: 10px;
+  }
+  
+  table {
+    width: 100%;
+  }
+  
+  td, th {
+    padding: 10px;
+    text-align: center;
+  }
+  
+  /* Responsivo */
+  @media (max-width: 768px) {
+    .card-container {
+      padding: 15px;
+    }
+  }
+  

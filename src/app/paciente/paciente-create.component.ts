@@ -2,6 +2,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { PacienteService } from '../paciente.service';
+import { BitacoraService } from '../bitacora.service';
 import { Paciente } from '../model/user.model';
 
 @Component({
@@ -21,6 +22,7 @@ export class PacienteCreateComponent implements OnInit {
 
   constructor(
     public pacienteService: PacienteService,
+    public bitacoraService: BitacoraService,
     private router: Router
   ) {}
 
@@ -34,12 +36,25 @@ export class PacienteCreateComponent implements OnInit {
         this.isSuccessful = true;
         this.isCreateFailed = false;
         console.log("llego a createpaciente .ts", data);
+        this.registrarAccion(this.paciente.user.username);
         this.router.navigate(['/paciente-list']); // Redirigir a la lista de pacientes
       },
       (err) => {
         this.isCreateFailed = true;
         console.log("fallo");
         this.errorMessage = err.error.message;  // Ajusta este campo dependiendo del backend
+      }
+    );
+  }
+
+  registrarAccion(name: string): void {
+    // Usamos el nombre del usuario para registrar la acción
+    this.bitacoraService.registrarAccion('CREAR', `PACIENTE Creado: ${name}`).subscribe(
+      (bitacora) => {
+        console.log('Acción registrada: ', bitacora);
+      },
+      (err) => {
+        console.error('Error al registrar acción: ', err);
       }
     );
   }

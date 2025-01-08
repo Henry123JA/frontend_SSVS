@@ -1,0 +1,44 @@
+<div class="receta-list">
+    <h2>Lista de Recetas</h2>
+  
+    <!-- Botón para crear una nueva receta -->
+    <div class="mb-3">
+      <button *ngIf="!roleService.hasRole('ROLE_PACIENTE')" class="btn btn-primary" routerLink="/receta-create">Crear Nueva Receta</button>
+    </div>
+  
+    <!-- Tabla para mostrar las recetas -->
+    <div class="table-responsive">
+      <table class="table">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Consulta ID</th>
+            <th>Medicamentos</th>
+            <th>Indicaciones</th>
+            <th>Fecha de Consulta</th>
+            <th>Acciones</th>
+          </tr>
+          <!-- Mensaje cuando no hay recetas -->
+          <tr *ngIf="recetas.length === 0">
+            <td colspan="6">No hay recetas disponibles</td>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let receta of recetas">
+            <td>{{ receta.id }}</td>
+            <td>{{ receta.consultaId }}</td>  <!-- Consulta asociada a la receta -->
+            <td>{{ receta.medicamentos }}</td>  <!-- Medicamentos recetados -->
+            <td>{{ receta.indicaciones }}</td>  <!-- Indicaciones de la receta -->
+            <td>{{ receta.fechaConsulta }}</td>  <!-- Fecha de la consulta asociada -->
+            <td>
+              <!-- Mostrar el botón de eliminar solo si el rol no es 'ROLE_PACIENTE' -->
+              <button *ngIf="!roleService.hasRole('ROLE_PACIENTE')" class="btn btn-outline-danger" (click)="borrar(receta.id)">Eliminar</button>
+              <!-- Botón para ver los detalles de la receta -->
+              <button class="btn btn-outline-info" (click)="verDetalles(receta.id)">Ver Detalles</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  

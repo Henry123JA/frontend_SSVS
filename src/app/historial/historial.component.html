@@ -1,0 +1,38 @@
+<div class="historial-container">
+  <h2>Historial Médico del Paciente</h2>
+
+  <button (click)="goBackToList()" class="btn btn-primary">Volver a la lista</button>
+
+  <table class="table table-striped">
+    <thead>
+      <tr *ngIf="historial.length === 0">
+        <td colspan="4">No hay historial disponible</td>
+      </tr>
+      <tr>
+        <th>Tipo</th>
+        <th>Fecha</th>
+        <th>Descripción</th>
+        <th>Notas</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let item of historial">
+        <td>{{ item.tipo }}</td>
+        <td>
+          {{
+            item.detalle.fechaConsulta ||
+            item.detalle.fechaInicio ||
+            item.detalle.fechaExamen ||
+            'N/A'
+          }}
+        </td>
+        <td>
+          {{ getDescripcion(item) }}
+        </td>
+        <td>
+          {{ getNotas(item) }}
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

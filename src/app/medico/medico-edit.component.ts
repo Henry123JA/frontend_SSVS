@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { MedicoService } from '../medico.service';  // Asegúrate de que esta ruta sea la correcta
-import { Medico } from '../model/user.model'; // Asegúrate de que esta ruta sea la correcta
+import { MedicoService } from '../medico.service';  
+import { Medico } from '../model/user.model'; 
+import { BitacoraService } from '../bitacora.service';
 
 @Component({
   selector: 'app-medico-edit',
@@ -15,7 +16,8 @@ export class MedicoEditComponent implements OnInit {
   public errorMessage: string = '';
 
   constructor(
-    public medicoService: MedicoService, 
+    public medicoService: MedicoService,
+    public bitacoraService: BitacoraService, 
     private route: ActivatedRoute,
     private router: Router
   ) {
@@ -34,7 +36,7 @@ export class MedicoEditComponent implements OnInit {
     this.medicoService.getMedicoById(medicoId).subscribe({
       next: (data) => {
         this.medico = data;
-
+        
         // Inicializa los valores de 'password' si no están presentes
         if (!this.medico.user.password) {
           this.medico.user.password = ''; // Si no se envió, lo dejamos vacío
@@ -58,6 +60,7 @@ export class MedicoEditComponent implements OnInit {
         this.isSuccessful = true;
         this.isUpdateFailed = false;
         console.log("Médico actualizado con éxito", this.medico);
+        this.registrarAccion(this.medico.user.username);
         this.router.navigate(['/medico-list']); // Asegúrate de tener esta ruta
       },
       error: (err) => {
@@ -66,5 +69,16 @@ export class MedicoEditComponent implements OnInit {
         this.errorMessage = err.error.message;
       }
     });
+  }
+  registrarAccion(name: string): void {
+    // Usamos el nombre del usuario para registrar la acción
+    this.bitacoraService.registrarAccion('EDITAR', `MEDICO Editado: ${name}`).subscribe(
+      (bitacora) => {
+        console.log('Acción registrada: ', bitacora);
+      },
+      (err) => {
+        console.error('Error al registrar acción: ', err);
+      }
+    );
   }
 }

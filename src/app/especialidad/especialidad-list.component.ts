@@ -2,8 +2,10 @@
 import { Component, OnInit } from '@angular/core';
 import { EspecialidadService } from '../especialidad.service';
 import { Especialidad } from '../model/especialidad.model';
+//import {RoleService} from '../roleService.service';
 
 import { BitacoraService } from '../bitacora.service';
+import { RoleService } from '../role.service';
 @Component({
   selector: 'app-especialidad-list',
   templateUrl: './especialidad-list.component.html',
@@ -12,7 +14,9 @@ import { BitacoraService } from '../bitacora.service';
 export class EspecialidadListComponent implements OnInit {
   public especialidades: Especialidad[] = [];
 
-  constructor(public especialidadService: EspecialidadService,public bitacoraService: BitacoraService ) {}
+  constructor(public especialidadService: EspecialidadService,
+              public bitacoraService: BitacoraService,  
+              public roleService: RoleService, ) {}
 
   ngOnInit(): void {
     this.especialidadService.getEspecialidades().subscribe(

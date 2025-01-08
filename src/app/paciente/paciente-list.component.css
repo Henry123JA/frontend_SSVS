@@ -21,4 +21,16 @@
   button {
     margin-right: 5px;
   }
+  .btn-outline-lila {
+    color: #9b59b6; /* Color lila para el texto */
+    border-color: #9b59b6; /* Color lila para el borde */
+    background-color: transparent; /* Fondo transparente */
+}
+
+.btn-outline-lila:hover {
+    color: #fff; /* Texto blanco al pasar el mouse */
+    background-color: #9b59b6; /* Fondo lila sólido */
+    border-color: #8e44ad; /* Borde más oscuro al hacer hover */
+}
+
   

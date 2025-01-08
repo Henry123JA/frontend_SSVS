@@ -3,7 +3,7 @@
     <h2>Lista de Especialidades</h2>
   
     <div class="mb-3">
-      <button class="btn btn-primary" routerLink="/especialidad/create">Crear Nueva Especialidad</button>
+      <button *ngIf="roleService.hasRole('ROLE_ADMIN')" class="btn btn-primary" routerLink="/especialidad/create">Crear Nueva Especialidad</button>
     </div>
   
     <table>
@@ -22,7 +22,7 @@
           <td>{{ especialidad.descripcion }}</td>
           <td>
             <!--<button class="btn btn-outline-warning" routerLink="/editEspecialidad/{{especialidad.id}}">Editar</button>-->
-            <button class="btn btn-outline-danger" (click)="borrar(especialidad)">Eliminar</button>
+            <button *ngIf="roleService.hasRole('ROLE_ADMIN')" class="btn btn-outline-danger" (click)="borrar(especialidad)">Eliminar</button>
           </td>
         </tr>
       </tbody>

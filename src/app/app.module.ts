@@ -36,6 +36,19 @@ import { FichaListComponent } from './ficha/ficha-list.component';
 import { FichaCreateComponent } from './ficha/ficha-create.component';
 import { BloqueHorarioListComponent } from './horario/bloque-horario-list.component';
 import { LogoutComponent } from './logout/logout.component';
+import { AntecedenteListComponent } from './antecedente/antecedente-list.component';
+import { AntecedenteCreateComponent } from './antecedente/antecedente-create.component';
+import { AntecedenteUpdateComponent } from './antecedente/antecedente-update.component';
+import { RecetaListComponent } from './receta/receta-list.component';
+import { RecetaCreateComponent } from './receta/receta-create.component';
+import { ConsultaListComponent } from './consulta/consulta-list.component';
+
+import { ConsultaCreateComponent } from './consulta/consulta-create.component';
+import { ExamenListComponent } from './examen/examen-list.component';
+import { ExamenCreateComponent } from './examen/examen-create.component';
+import { TratamientoListComponent } from './tratamiento/tratamiento-list.component';
+import { TratamientoCreateComponent } from './tratamiento/tratamiento-create.component';
+import { HistorialComponent } from './historial/historial.component';
 
 @NgModule({
   declarations: [
@@ -47,6 +60,8 @@ import { LogoutComponent } from './logout/logout.component';
     BoardAdminComponent,
     BoardModeratorComponent,
     BoardUserComponent,
+    ExamenListComponent,
+    ExamenCreateComponent,
     UserListComponent,
     UserEditComponent,
     UserCreateComponent,
@@ -65,9 +80,19 @@ import { LogoutComponent } from './logout/logout.component';
     HorarioCreateComponent,
     FichaListComponent,
     FichaCreateComponent,
+    HistorialComponent,
+    AntecedenteListComponent,
+    AntecedenteCreateComponent,
+    AntecedenteUpdateComponent,
     BloqueHorarioListComponent,
+    ConsultaListComponent,
+    ConsultaCreateComponent,
+    RecetaListComponent,
+    RecetaCreateComponent,
     BitacoraDetailComponent,
     LogoutComponent,
+    TratamientoListComponent,
+    TratamientoCreateComponent,
   ],
   imports: [
     BrowserModule,
